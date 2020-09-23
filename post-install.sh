@@ -4,20 +4,20 @@
 # Country or Country code for reflector, to update Mirrors to the latest and fastest for your Country
 reflector_country="Australia"
 
-# Check if user is root / sudo << Cant use this due to "yay" needing to run as normal user. 
-# if [[ $(id -u) -ne 0 ]]
-#  then printf "\nPlease run as root or with sudo\n\n"
-#  exit 1
-# fi
+# Check if user is root / sudo and if true, exit. "yay" install needs to run as normal user. 
+if [[ $(id -u) = 0 ]]
+  then printf "\nPlease run as non-root / sudo, ie. normal user\n\n"
+  exit 1
+ fi
 
 printf "######   Syncing repos and updating packages   ######\n"
 sudo pacman -Syu --noconfirm
 
 printf "######   Installing reflector and Applying Custom Mirrors   ######\n"
-pacman -S --noconfirm reflector 
+sudo pacman -S --noconfirm reflector 
 
-sed -i 's/^--/# --/g' /etc/xdg/reflector/reflector.conf
-tee -a /etc/xdg/reflector/reflector.conf << EOF
+sudo sed -i 's/^--/# --/g' /etc/xdg/reflector/reflector.conf
+sudo tee -a /etc/xdg/reflector/reflector.conf << EOF
 
 
 ##### Config Added via base.sh #####
@@ -29,8 +29,8 @@ tee -a /etc/xdg/reflector/reflector.conf << EOF
 --sort rate
 EOF
 
-systemctl enable reflector.service
-systemctl start reflector.service
+sudo systemctl enable reflector.service
+sudo systemctl start reflector.service
 
 printf "######   Installing and configuring UFW   ######\n"
 sudo pacman -S --noconfirm ufw
