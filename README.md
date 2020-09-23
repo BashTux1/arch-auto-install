@@ -70,7 +70,7 @@ Packages installed via **Pacstrap** in this script:
 ## Post install script (post-install.sh)
 
 - Gnome / KDE / Sway (separate scripts)
-- UFW (deny incoming, allow outgoing)
+- [UFW](https://wiki.archlinux.org/index.php/Uncomplicated_Firewall) (Uncomplicated Firewall)
 - Automatic login
 - Fonts
 - Wallpapers
