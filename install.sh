@@ -44,7 +44,7 @@ genfstab -U /mnt >> /mnt/etc/fstab
 
 printf "######   Configuring new system   ######\n"
 arch-chroot /mnt /bin/bash <<EOF
-printf "######   Setting system clock   ######\n"
+printf "######   Setting Time Zone   ######\n"
 ln -sf /usr/share/zoneinfo/$continent_city /etc/localtime
 hwclock --systohc --localtime
 printf "######   Setting locales   ######\n"
