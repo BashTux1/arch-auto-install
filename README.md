@@ -69,19 +69,14 @@ Packages installed via **Pacstrap** in this script:
 
 ## Post install script (post-install.sh)
 
-- Gnome / KDE / Sway (separate scripts)
+- Reflector
 - [UFW](https://wiki.archlinux.org/index.php/Uncomplicated_Firewall) (Uncomplicated Firewall)
-- Automatic login
+- Common Apps: git, htop, p7zip, ripgrep, unzip, unrar
+- Create user folders (xdg-user-dirs)
 - Fonts
-- Wallpapers
-- Multilib
 - yay (AUR helper)
-- Plymouth
-- Flatpak support (Firefox installed as Flatpak)
-- Lutris with Wine support (commented)
-- Sway only:
-   - Base16 theme: alacritty, rofi, vim
-   - Flatpak: automatic updates via systemd timer
+- pamac (
+
 
 ### Requirements
  Variable | Example | Comment |
