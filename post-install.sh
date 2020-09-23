@@ -20,7 +20,7 @@ sudo sed -i 's/^--/# --/g' /etc/xdg/reflector/reflector.conf
 sudo tee -a /etc/xdg/reflector/reflector.conf << EOF
 
 
-##### Config Added via base.sh #####
+##### Config Added via post-install.sh #####
 
 --save /etc/pacman.d/mirrorlist
 --country $reflector_country
@@ -36,9 +36,12 @@ printf "######   Installing and configuring UFW   ######\n"
 sudo pacman -S --noconfirm ufw
 sudo systemctl enable ufw
 sudo systemctl start ufw
-sudo ufw enable
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
+sudo ufw limit ssh
+sudo ufw allow 80
+sudo ufw allow 443
+sudo ufw enable
 
 printf "######   Installing common applications   ######\n"
 sudo pacman -S --noconfirm git htop p7zip ripgrep unzip unrar
