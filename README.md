@@ -69,13 +69,12 @@ Packages installed via **Pacstrap** in this script:
 
 ## Post install script (post-install.sh)
 
-- Reflector
+- reflector - Install and configure mirrors for country set in variable
 - [UFW](https://wiki.archlinux.org/index.php/Uncomplicated_Firewall) (Uncomplicated Firewall)
 - Common Apps: git, htop, p7zip, ripgrep, unzip, unrar
 - Create user folders (xdg-user-dirs)
 - Fonts
 - yay (AUR helper)
-- pamac (
 
 
 ### Requirements
