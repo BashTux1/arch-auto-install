@@ -88,4 +88,3 @@ umount -R /mnt
 
 printf "######   Arch Linux is ready. You can reboot now!   ######\n\n\n"
 
-#1

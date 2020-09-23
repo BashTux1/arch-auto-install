@@ -99,4 +99,3 @@ yay -S --noconfirm pamac-aur
 
 printf "######   All Done With Base Config   ######\n"
 
-#1

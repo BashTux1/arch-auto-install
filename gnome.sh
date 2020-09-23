@@ -72,5 +72,3 @@ sudo systemctl disable gdm.service
 sudo systemctl enable gdm-plymouth.service
 
 echo "Your setup is ready. You can reboot now!"
-
-#1
