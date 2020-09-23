@@ -76,6 +76,13 @@ grub-install --target=x86_64-efi --efi-directory=/boot/EFI --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
 EOF
 
+printf "######   Generating Hosts File   ######\n"
+tee -a /mnt/etc/hosts << EOF
+127.0.0.1	localhost
+::1			localhost
+127.0.1.1	$hostname.localdomain	$hostname
+EOF
+
 printf "######   Unmount Partions   ######\n"
 umount -R /mnt
 
