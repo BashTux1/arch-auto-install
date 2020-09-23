@@ -41,20 +41,10 @@ sudo ufw default allow outgoing
 sudo ufw limit ssh
 sudo ufw allow 80
 sudo ufw allow 443
-sudo ufw enable
+echo "y" | sudo ufw enable
 
 printf "######   Installing common applications   ######\n"
 sudo pacman -S --noconfirm git htop p7zip ripgrep unzip unrar
-
-printf "######   Installing chromium with GPU acceleration   ######\n"
-sudo pacman -S --noconfirm chromium
-mkdir -p ~/.config/
-touch ~/.config/chromium-flags.conf
-tee -a ~/.config/chromium-flags.conf << EOF
---ignore-gpu-blacklist
---enable-gpu-rasterization
---enable-zero-copy
-EOF
 
 printf "######   Creating user's folders   ######\n"
 sudo pacman -S --noconfirm xdg-user-dirs
@@ -68,28 +58,17 @@ tee -a ~/.bashrc << EOF
 export PS1="\w \\$  "
 PROMPT_COMMAND='PROMPT_COMMAND='\''PS1="\n\w \\$  "'\'
 
-alias upa="sudo rm -f /var/lib/pacman/db.lck && sudo pacman -Syu && yay -Syu --aur && flatpak update && fwupdmgr refresh && fwupdmgr update"
 EOF
 
 printf "######   Installing yay   ######\n"
-git clone https://aur.archlinux.org/yay-bin.git
-cd yay-bin
+git clone https://aur.archlinux.org/yay.git
+cd yay
 makepkg -si --noconfirm
 cd ..
 rm -rf yay-bin
 
-printf "######   Installing pamac   ######\n"
-yay -S --noconfirm pamac-aur
-
-# printf "######   Installing and configuring Plymouth   ######\n"
-# yay -S --noconfirm plymouth-git
-# sudo sed -i 's/base systemd autodetect/base systemd sd-plymouth autodetect/g' /etc/mkinitcpio.conf
-# sudo sed -i 's/quiet rw/quiet splash loglevel=3 rd.udev.log_priority=3 vt.global_cursor_default=0 rw/g' /boot/loader/entries/arch.conf
-# sudo sed -i 's/quiet rw/quiet splash loglevel=3 rd.udev.log_priority=3 vt.global_cursor_default=0 rw/g' /boot/loader/entries/archlts.conf
-# sudo mkinitcpio -p linux
-# sudo mkinitcpio -p linux-lts
-# sudo plymouth-set-default-theme -R bgrt
-
+# printf "######   Installing pamac   ######\n"
+# yay -S --noconfirm pamac-aur
 
 # printf "######   Reducing VM writeback time   ######\n"
 # sudo touch /etc/sysctl.d/dirty.conf
@@ -100,5 +79,5 @@ yay -S --noconfirm pamac-aur
 # printf "######   Disabling root (still allows sudo)   ######\n"
 # passwd --lock root
 
-printf "######   All Done With Base Config   ######\n"
+printf "######   All done with Post Installation   ######\n"
 
