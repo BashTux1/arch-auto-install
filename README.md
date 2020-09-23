@@ -40,6 +40,32 @@ Packages installed via **Pacstrap** in this script:
 | ├─sda2                                                | part  |    SWAP    |  16G  / Set custom via variables      |
 | ├─sda3                                                | part  |      /     |  Remaining  |
 
+### Overview of Script Functions
+
+- Update system clock
+- Apply country mirrors via reflector
+- Sync package database
+- Create partition tables
+- Format / partition and Mount it
+- Format /boot partition
+- Enable swap
+- Install Arch Linux
+- Generate fstab
+- Configure new system
+   - Set Time Zone
+   - Set locales
+   - Set hostname
+   - Set root password
+   - Create new user
+   - Enable DHCP (dhcpcd)
+   - Enable NetworkManager
+   - Enable Open VM Tools
+   - Enable OpenSSH
+   - Add user as a sudoer
+   - Install GRUB Bootloader
+   - Generate Hosts File
+- Unmount Partions
+- Arch Linux is ready
 
 ## Post install script (post-install.sh)
 
