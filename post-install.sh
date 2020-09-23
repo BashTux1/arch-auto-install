@@ -44,7 +44,7 @@ sudo ufw allow 443
 echo "y" | sudo ufw enable
 
 printf "######   Installing common applications   ######\n"
-sudo pacman -S --noconfirm git htop p7zip ripgrep unzip unrar
+sudo pacman -S --noconfirm htop p7zip ripgrep unzip unrar
 
 printf "######   Creating user's folders   ######\n"
 sudo pacman -S --noconfirm xdg-user-dirs
