@@ -70,7 +70,7 @@ Packages installed via **Pacstrap** in this script:
 1. Download and boot into the latest [Arch Linux iso](https://www.archlinux.org/download/)
 2. Connect to the internet. Assuming the use of DHCP, in which case this should be automatically done. 
 3. Sync repos: `pacman -Sy` and install **wget** `pacman -S wget`
-4. `wget https://raw.githubusercontent.com/`
+4. `wget https://raw.githubusercontent.com/bchuter/arch-auto-install/master/install.sh`
 5. Change the variables at the top of the file. See
 6. Make the script executable: `chmod +x install.sh`
 7. Run the script: `./install.sh`
