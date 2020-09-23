@@ -41,7 +41,7 @@ Packages installed via **Pacstrap** in this script:
 | ├─sda3                                                | part  |      /     |  Remaining  |
 
 
-## Post install script (base.sh)
+## Post install script (post-install.sh)
 
 - Gnome / KDE / Sway (separate scripts)
 - UFW (deny incoming, allow outgoing)
@@ -56,6 +56,11 @@ Packages installed via **Pacstrap** in this script:
 - Sway only:
    - Base16 theme: alacritty, rofi, vim
    - Flatpak: automatic updates via systemd timer
+
+### Requirements
+ Variable | Example | Comment |
+|:-|:-|:-|
+| **reflector_country** | Australia | Set your country to be used by `reflector`. <BR> See [Reflector Country List](https://github.com/bchuter/arch-auto-install/blob/master/README.md#reflector-country-list) for valid entries. <BR> For further info on reflector, see: https://wiki.archlinux.org/index.php/Reflector |
 
 ## Installation guide
 
