@@ -29,7 +29,7 @@ Packages installed via **Pacstrap** in this script:
 | **user_password** | MyPassword | Set your user password for the user created above |
 | **hostname** | arch | Set the system hostname |
 | **continent_city** | Australia/Sydney | Set your country timezone, must have the following format: Zone/SubZone |
-| **reflector_country** | Australia | Set your country to be used by `reflector`. <BR> See [Reflector Country List](https://github.com/bchuter/arch-auto-install/blob/master/README.md#reflector-country-list) for valid entries. <BR> For further info on reflector, see: https://wiki.archlinux.org/index.php/Reflector |
+| **reflector_country** | Australia | Set your country to be used by [reflector](https://wiki.archlinux.org/index.php/Reflector). <BR> See [Reflector Country List](https://github.com/bchuter/arch-auto-install/blob/master/README.md#reflector-country-list) for valid entries. |
 
 ### Partitions
 
@@ -60,7 +60,7 @@ Packages installed via **Pacstrap** in this script:
 ### Requirements
  Variable | Example | Comment |
 |:-|:-|:-|
-| **reflector_country** | Australia | Set your country to be used by `reflector`. <BR> See [Reflector Country List](https://github.com/bchuter/arch-auto-install/blob/master/README.md#reflector-country-list) for valid entries. <BR> For further info on reflector, see: https://wiki.archlinux.org/index.php/Reflector |
+| **reflector_country** | Australia | Set your country to be used by [reflector](https://wiki.archlinux.org/index.php/Reflector). <BR> See [Reflector Country List](https://github.com/bchuter/arch-auto-install/blob/master/README.md#reflector-country-list) for valid entries. |
 
 <BR>
 <BR>
