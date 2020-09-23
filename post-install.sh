@@ -98,3 +98,5 @@ yay -S --noconfirm pamac-aur
 # passwd --lock root
 
 printf "######   All Done With Base Config   ######\n"
+
+#1
