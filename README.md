@@ -13,7 +13,7 @@ Packages installed via **Pacstrap** in this script:
 |-|-|-|-|-|-|-|-|
 | [base](https://www.archlinux.org/packages/core/any/base/) | [base-devel](https://www.archlinux.org/groups/x86_64/base-devel/) | [linux](https://www.archlinux.org/packages/core/x86_64/linux/) | [linux-firmware](https://www.archlinux.org/packages/core/any/linux-firmware/) | [e2fsprogs](https://www.archlinux.org/packages/core/x86_64/e2fsprogs/) | [dosfstools](https://www.archlinux.org/packages/core/x86_64/dosfstools/) | [networkmanager](https://www.archlinux.org/packages/extra/x86_64/networkmanager/) | [wget](https://www.archlinux.org/packages/extra/x86_64/wget/) |
 | [man-db](https://www.archlinux.org/packages/core/x86_64/man-db/) | [man-pages](https://www.archlinux.org/packages/core/any/man-pages/) | [nano](https://www.archlinux.org/packages/core/x86_64/nano/) | [vim](https://www.archlinux.org/packages/extra/x86_64/vim/) | [dhcpcd](https://www.archlinux.org/packages/core/x86_64/dhcpcd/) | [open-vm-tools](https://www.archlinux.org/packages/community/x86_64/open-vm-tools/) | [openssh](https://www.archlinux.org/packages/core/x86_64/openssh/) | [grub](https://www.archlinux.org/packages/core/x86_64/grub/) |
-| [efibootmgr](https://www.archlinux.org/packages/core/x86_64/efibootmgr/) | [os-prober](https://www.archlinux.org/packages/community/x86_64/os-prober/) |||||||
+| [efibootmgr](https://www.archlinux.org/packages/core/x86_64/efibootmgr/) | [os-prober](https://www.archlinux.org/packages/community/x86_64/os-prober/) | [git](https://www.archlinux.org/packages/extra/x86_64/git/) ||||||
 
 ### Requirements
 - **UEFI mode**
@@ -96,6 +96,11 @@ Packages installed via **Pacstrap** in this script:
 7. Run the script: `./install.sh`
 8. Shutdown and unmount boot Arch Linux ISO. 
 9. Boot into your new install of Arch Linux
+10. Login as non root user
+11. Clone the Arch Auto Install Scripts: `git clone https://github.com/bchuter/arch-auto-install.git`
+12. Change into the dir: `cd arch-auto-install/`
+13. Make the scripts executable: `chmod +x *.sh`
+14. Run post-install script: `./post-install.sh`
 
 
 ## Misc Guides
