@@ -62,6 +62,9 @@ Packages installed via **Pacstrap** in this script:
 |:-|:-|:-|
 | **reflector_country** | Australia | Set your country to be used by `reflector`. <BR> See [Reflector Country List](https://github.com/bchuter/arch-auto-install/blob/master/README.md#reflector-country-list) for valid entries. <BR> For further info on reflector, see: https://wiki.archlinux.org/index.php/Reflector |
 
+<BR>
+<BR>
+
 ## Installation guide
 
 1. Download and boot into the latest [Arch Linux iso](https://www.archlinux.org/download/)
