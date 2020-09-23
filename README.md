@@ -1,5 +1,7 @@
 # Arch Linux Automated Install Scripts
 
+Inspired by: https://github.com/exah-io/minimal-arch-linux
+
 ## Install script (install.sh)
 
 This script has been heavily modified to meet my needs. It is geared to host an Arch install in VM.  
