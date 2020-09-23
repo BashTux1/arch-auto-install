@@ -4,7 +4,7 @@ Inspired by: https://github.com/exah-io/minimal-arch-linux
 
 ## Install script (install.sh)
 
-This script has been heavily modified to meet my needs. It is geared to host an Arch install in VM.  
+This script has been modified to meet my needs. It is geared to host an Arch install in VM.  
 See [Requirements](https://github.com/bchuter/arch-auto-install/blob/master/README.md#requirements) to make some custom choices for your installation.  
 
 Packages installed via **Pacstrap** in this script:  
