@@ -1,4 +1,4 @@
-# Arch Linux install scripts
+# Arch Linux Automated Install Scripts
 
 ## Install script (install.sh)
 
