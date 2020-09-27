@@ -13,6 +13,6 @@ printf "######   Enabling lightdm   ######\n"
 sudo systemctl enable lightdm
 
 printf "######   Installing pamac   ######\n"
-yay -S pamac-aur
+yay -S --noconfirm pamac-aur
 
 printf "######   Your setup is ready. You can reboot now!   ######\n"
