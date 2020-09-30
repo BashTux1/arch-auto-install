@@ -52,13 +52,13 @@ sudo pacman -S --noconfirm xdg-user-dirs
 printf "######   Installing fonts   ######\n"
 sudo pacman -S --noconfirm ttf-roboto ttf-roboto-mono ttf-droid ttf-opensans ttf-dejavu ttf-liberation ttf-hack noto-fonts ttf-fira-code ttf-fira-mono ttf-font-awesome noto-fonts-emoji ttf-hanazono
 
-printf "######   Ricing bash   ######\n"
-touch ~/.bashrc
-tee -a ~/.bashrc << EOF
-export PS1="\w \\$  "
-PROMPT_COMMAND='PROMPT_COMMAND='\''PS1="\n\w \\$  "'\'
+# printf "######   Ricing bash   ######\n"
+# touch ~/.bashrc
+# tee -a ~/.bashrc << EOF
+# export PS1="\w \\$  "
+# PROMPT_COMMAND='PROMPT_COMMAND='\''PS1="\n\w \\$  "'\'
 
-EOF
+# EOF
 
 printf "######   Installing yay   ######\n"
 git clone https://aur.archlinux.org/yay.git
