@@ -61,13 +61,35 @@ rm -rf yay-bin
 # printf "######   Installing fonts   ######\n"
 # sudo pacman -S --noconfirm ttf-roboto ttf-roboto-mono ttf-droid ttf-opensans ttf-dejavu ttf-liberation ttf-hack noto-fonts ttf-fira-code ttf-fira-mono ttf-font-awesome noto-fonts-emoji ttf-hanazono
 
-# printf "######   Ricing bash   ######\n"
-# touch ~/.bashrc
-# tee -a ~/.bashrc << EOF
-# export PS1="\w \\$  "
-# PROMPT_COMMAND='PROMPT_COMMAND='\''PS1="\n\w \\$  "'\'
+printf "######   Ricing bash   ######\n"
+mv ~/.bashrc .bashrc_original
+touch ~/.bashrc
+tee -a ~/.bashrc << EOF
+#
+# ~/.bashrc
+#
 
-# EOF
+[[ $- != *i* ]] && return
+
+[ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
+
+PS1='\[\033[01;32m\][\u@\h\[\033[01;37m\] \W\[\033[01;32m\]]\$\[\033[00m\] '
+
+alias ls='ls --color=auto'
+alias ll='ls -l --color=auto'
+alias la='ls -la --color=auto'
+alias grep='grep --colour=auto'
+alias egrep='egrep --colour=auto'
+alias fgrep='fgrep --colour=auto'
+
+alias cp="cp -i"                          # confirm before overwriting something
+alias df='df -h'                          # human-readable sizes
+alias free='free -m'                      # show sizes in MB
+alias more=less
+
+complete -cf sudo
+
+EOF
 
 printf "######   Installing Zsh   ######\n"
 sudo pacman -S --noconfirm zsh zsh-completions
@@ -96,6 +118,37 @@ sudo sed -i 's/^plugins=(git)/plugins=(git archlinux zsh-syntax-highlighting zsh
 
 printf "######   Changing Zsh default theme   ######\n"
 sudo sed -i 's/^ZSH_THEME="robbyrussell"/ZSH_THEME="lukerandall"/g' ~/.zshrc
+
+printf "######   Adding Zsh key bindings for Keypad   ######\n"
+tee -a ~/.zshrc << EOF
+
+## Keypad Bindings
+
+## The actual codes (for example ^[Oq) may be different on your system. 
+## You can press Ctrl+v followed by the key in question to get the code for your terminal.
+
+# 0 . Enter
+bindkey -s "^[Op" "0"
+bindkey -s "^[On" "."
+bindkey -s "^[OM" "^M"
+# 1 2 3
+bindkey -s "^[Oq" "1"
+bindkey -s "^[Or" "2"
+bindkey -s "^[Os" "3"
+# 4 5 6
+bindkey -s "^[Ot" "4"
+bindkey -s "^[Ou" "5"
+bindkey -s "^[Ov" "6"
+# 7 8 9
+bindkey -s "^[Ow" "7"
+bindkey -s "^[Ox" "8"
+bindkey -s "^[Oy" "9"
+# + -  * /
+bindkey -s "^[Ol" "+"
+bindkey -s "^[OS" "-"
+bindkey -s "^[OR" "*"
+bindkey -s "^[OQ" "/"
+EOF
 
 # printf "######   Installing pamac   ######\n"
 # yay -S --noconfirm pamac-aur
