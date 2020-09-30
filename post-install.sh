@@ -49,8 +49,15 @@ sudo pacman -S --noconfirm htop p7zip ripgrep unzip unrar
 printf "######   Creating user's folders   ######\n"
 sudo pacman -S --noconfirm xdg-user-dirs
 
-printf "######   Installing fonts   ######\n"
-sudo pacman -S --noconfirm ttf-roboto ttf-roboto-mono ttf-droid ttf-opensans ttf-dejavu ttf-liberation ttf-hack noto-fonts ttf-fira-code ttf-fira-mono ttf-font-awesome noto-fonts-emoji ttf-hanazono
+printf "######   Installing yay   ######\n"
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si --noconfirm
+cd ..
+rm -rf yay-bin
+
+# printf "######   Installing fonts   ######\n"
+# sudo pacman -S --noconfirm ttf-roboto ttf-roboto-mono ttf-droid ttf-opensans ttf-dejavu ttf-liberation ttf-hack noto-fonts ttf-fira-code ttf-fira-mono ttf-font-awesome noto-fonts-emoji ttf-hanazono
 
 # printf "######   Ricing bash   ######\n"
 # touch ~/.bashrc
@@ -60,12 +67,28 @@ sudo pacman -S --noconfirm ttf-roboto ttf-roboto-mono ttf-droid ttf-opensans ttf
 
 # EOF
 
-printf "######   Installing yay   ######\n"
-git clone https://aur.archlinux.org/yay.git
-cd yay
-makepkg -si --noconfirm
-cd ..
-rm -rf yay-bin
+printf "######   Installing Zsh   ######\n"
+sudo pacman -S --noconfirm zsh zsh-completions
+
+printf "######   Installing 'oh my zsh'   ######\n"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+
+printf "######   Making Zsh the default shell   ######\n"
+chsh -s /bin/zsh
+
+printf "######   Installing Custom Zsh plugins   ######\n"
+## zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+## zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+## zsh-history-substring-search
+git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
+
+printf "######   Enabling Custom Zsh plugins   ######\n" 
+sudo sed -i 's/^plugins=(git)/plugins=(git archlinux zsh-syntax-highlighting zsh-autosuggestions zsh-history-substring-search)/g' ~/.zshrc
+
+printf "######   Changing Zsh default theme   ######\n"
+sudo sed -i 's/^ZSH_THEME="robbyrussell"/ZSH_THEME="lukerandall"/g' ~/.zshrc
 
 # printf "######   Installing pamac   ######\n"
 # yay -S --noconfirm pamac-aur
@@ -79,5 +102,6 @@ rm -rf yay-bin
 # printf "######   Disabling root (still allows sudo)   ######\n"
 # passwd --lock root
 
-printf "######   All done with Post Installation   ######\n"
+printf "######   All done with Post Installation   ######\n\n"
+printf "######   Log out and in (or reboot), for shell change to Zsh   ######\n\n"
 
