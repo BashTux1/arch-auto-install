@@ -75,6 +75,11 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 printf "######   Making Zsh the default shell   ######\n"
 chsh -s /bin/zsh
+while [ $? -eq 1 ]
+do
+	printf "You entered the incorrect password for user: $USER, try again!\n"
+	chsh -s /bin/zsh
+done
 
 printf "######   Installing Custom Zsh plugins   ######\n"
 ## zsh-syntax-highlighting
