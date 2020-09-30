@@ -3,6 +3,8 @@
 ### User Variables, Edit these for your environment
 # Country or Country code for reflector, to update Mirrors to the latest and fastest for your Country
 reflector_country="Australia"
+# User password for non root user
+user_password="MyPassword"
 
 # Check if user is root / sudo and if true, exit. "yay" install needs to run as normal user. 
 if [[ $(id -u) = 0 ]]
@@ -74,7 +76,7 @@ printf "######   Installing 'oh my zsh'   ######\n"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
 printf "######   Making Zsh the default shell   ######\n"
-chsh -s /bin/zsh
+echo $user_password | chsh -s /bin/zsh
 while [ $? -eq 1 ]
 do
 	printf "You entered the incorrect password for user: $USER, try again!\n"
