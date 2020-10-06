@@ -7,7 +7,7 @@ printf "######   Installing xorg   ######\n"
 sudo pacman -S --noconfirm xorg xorg-server
 
 printf "######   Installing xfce and a few extra apps   ######\n"
-sudo pacman -S --noconfirm xfce4 xfce4-goodies lightdm lightdm-gtk-greeter xarchiver
+sudo pacman -S --noconfirm xfce4 xfce4-goodies lightdm lightdm-gtk-greeter xarchiver network-manager-applet
 
 printf "######   Enabling lightdm   ######\n"
 sudo systemctl enable lightdm
