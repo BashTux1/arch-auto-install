@@ -15,4 +15,14 @@ sudo systemctl enable lightdm
 printf "######   Installing pamac   ######\n"
 yay -S --noconfirm pamac-aur
 
+##### Ricing Theme
+
+printf "######   Optimising volume icon size   ######\n"
+touch ~/.config/gtk-3.0/gtk.css
+tee -a ~/.config/gtk-3.0/gtk.css << EOF
+#pulseaudio-button * {
+    -gtk-icon-transform: scale(.75);
+}
+EOF
+
 printf "######   Your setup is ready. You can reboot now!   ######\n"
