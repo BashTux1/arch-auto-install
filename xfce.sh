@@ -12,8 +12,8 @@ sudo pacman -S --noconfirm xfce4 xfce4-goodies lightdm lightdm-gtk-greeter xarch
 printf "######   Enabling lightdm   ######\n"
 sudo systemctl enable lightdm
 
-printf "######   Installing pamac   ######\n"
-yay -S --noconfirm pamac-aur
+printf "######   Installing tkpacman   ######\n"
+yay -S --noconfirm tkpacman
 
 ##### Ricing Theme
 
