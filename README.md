@@ -1,6 +1,6 @@
 # Arch Linux Automated Install Scripts
 
-Inspired by: https://github.com/exah-io/minimal-arch-linux
+Attribution: https://github.com/exah-io/minimal-arch-linux
 
 ## Install script (install.sh)
 
