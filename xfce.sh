@@ -21,9 +21,13 @@ yay -S --noconfirm tkpacman
 ##### Theme ##### 
 
 printf "######   Optimising volume icon size   ######\n"
+mkdir ~/.config/gtk-3.0/
 touch ~/.config/gtk-3.0/gtk.css
 tee -a ~/.config/gtk-3.0/gtk.css << EOF
 #pulseaudio-button * {
+    -gtk-icon-transform: scale(.75);
+}
+#xfce4-notification-plugin* {
     -gtk-icon-transform: scale(.75);
 }
 EOF
@@ -44,12 +48,11 @@ printf "######   Downloading, Installing and Setting Fonts   ######\n"
 sudo pacman -S --noconfirm extra/noto-fonts
 xfconf-query -c xsettings -p /Gtk/FontName  -s "Noto Sans 10"
 
-printf "######   Changing Panel Properties   ######\n"
-xfconf-query -c xfce4-panel -p /panels/panel-1/position -s "p=10;x=0;y=0"
-xfconf-query -c xfce4-panel -p /panels/panel-2/position -s "p=9;x=0;y=0"
-xfconf-query -c xfce4-panel -p /panels/panel-1/size -s "36" 
-xfconf-query -c xfce4-panel -p /panels/panel-1/icon-size -s "28"
-
+# printf "######   Changing Panel Properties   ######\n"
+# xfconf-query -c xfce4-panel -p /panels/panel-1/position -s "p=10;x=0;y=0"
+# xfconf-query -c xfce4-panel -p /panels/panel-2/position -s "p=9;x=0;y=0"
+# xfconf-query -c xfce4-panel -p /panels/panel-1/size -s "36" 
+# xfconf-query -c xfce4-panel -p /panels/panel-1/icon-size -s "28"
 
 
 printf "######   Your setup is ready. You can reboot now!   ######\n"
