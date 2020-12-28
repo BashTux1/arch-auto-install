@@ -155,6 +155,12 @@ tee -a /mnt/etc/hosts << EOF
 127.0.1.1	$hostname.localdomain	$hostname
 EOF
 
+printf "######   Getting post-install.sh script   ######\n"
+cd /mnt/home/$user_name
+wget -O post-install.sh https://git.io/JLygr
+chmod +x post-install.sh
+cd /
+
 printf "######   Unmount Partions   ######\n"
 umount -R /mnt
 
