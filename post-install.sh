@@ -7,13 +7,13 @@ printf "\nEnter Reflector Country [Australia]: "
 read reflector_country
 reflector_country=${reflector_country:-Australia}
 
-printf "\n>>>   The password required here was set for the non-root user during the initial [install.sh]\n"
-printf "\n>>>   This is required to make Zsh the default shell for the non-root user \n"
+printf "\n>>>   This password is for the currently logged in non-root user\n"
+printf ">>>   This is required to make Zsh the default shell for the non-root user \n"
 while true; do
-	printf "\nEnter the User Password for [$user_name]: "
+	printf "\nEnter current User Password: "
     read -s user_password1
     echo
-	printf "\nConfirm the User Password for [$user_name]: "
+	printf "\nConfirm current User Password: "
     read -s user_password
     echo
     [ "$user_password1" = "$user_password" ] && break
