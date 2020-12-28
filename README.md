@@ -88,8 +88,11 @@ Packages installed via **Pacstrap** in this script:
 ### User Read Input
  Value | Example/Default | Comment |
 |:-|:-|:-|
-| **User Password** | MyPassword | The password required here was set for the non-root user during the initial [install.sh] <BR>  This is required to make Zsh the default shell for the non-root user |
 | **Reflector Country** | Australia | This sets the country to be used by the [reflector](https://wiki.archlinux.org/index.php/Reflector) script. <BR>  Reflector is a Python script which can retrieve the most up-to-date package mirrors <BR> See [Reflector Country List](https://github.com/BashTux1/arch-auto-install/blob/master/README.md#reflector-country-list) for valid entires |
+| **ufw** "Optional" | "Y" / N | "UFW" (Uncomplicated Firewall), Optional Installation |
+| **yay** "Optional" | "Y" / N | "yay" AUR Helper, Optional Installation |
+| **zsh** "Optional" | "Y" / N | "Zsh" along with "Oh My Zsh", Optional Installation |
+| **User Password** | MyPassword | If answered "Y" to install Zsh, Then prompt for password entry. Required to make Zsh the default shell |
 
 <BR>
 <BR>
