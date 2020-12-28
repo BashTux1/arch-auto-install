@@ -30,7 +30,7 @@ Packages installed via **Pacstrap** in this script:
 | **user_password** | MyPassword | Set your user password for the user created above |
 | **hostname** | arch | Set the system hostname |
 | **continent_city** | Australia/Sydney | Set your country timezone, must have the following format: Zone/SubZone |
-| **reflector_country** | Australia | Set your country to be used by [reflector](https://wiki.archlinux.org/index.php/Reflector). <BR> See [Reflector Country List](https://github.com/BashTux1/arch-auto-install/blob/master/README.md#reflector-country-list) for valid entries. |
+| **reflector_country** | Australia | This sets the country to be used by the [reflector](https://wiki.archlinux.org/index.php/Reflector) script. <BR>  Reflector is a Python script which can retrieve the most up-to-date package mirrors <BR> See [Reflector Country List](https://github.com/BashTux1/arch-auto-install/blob/master/README.md#reflector-country-list) for valid entires |
 
 ### Partitions
 
