@@ -1,10 +1,24 @@
 #!/bin/bash
 
-### User Variables, Edit these for your environment
-# Country or Country code for reflector, to update Mirrors to the latest and fastest for your Country
-reflector_country="Australia"
-# User password for non root user
-user_password="MyPassword"
+printf "\n>>>   This sets the country to be used by the [reflector] script\n"
+printf ">>>   Reflector is a Python script which can retrieve the most up-to-date package mirrors\n"
+printf ">>>   See: https://github.com/BashTux1/arch-auto-install/blob/master/README.md#reflector-country-list\n"
+printf "\nEnter Reflector Country [Australia]: "
+read reflector_country
+reflector_country=${reflector_country:-Australia}
+
+printf "\n>>>   The password required here was set for the non-root user during the initial [install.sh]\n"
+printf "\n>>>   This is required to make Zsh the default shell for the non-root user \n"
+while true; do
+	printf "\nEnter the User Password for [$user_name]: "
+    read -s user_password1
+    echo
+	printf "\nConfirm the User Password for [$user_name]: "
+    read -s user_password
+    echo
+    [ "$user_password1" = "$user_password" ] && break
+    printf "\nPasswords DO NOT match, Please try again\n"
+done
 
 # Check if user is root / sudo and if true, exit. "yay" install needs to run as normal user. 
 if [[ $(id -u) = 0 ]]
