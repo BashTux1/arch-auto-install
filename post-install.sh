@@ -62,9 +62,6 @@ echo "y" | sudo ufw enable
 printf "######   Installing common applications   ######\n"
 sudo pacman -S --noconfirm htop p7zip ripgrep unzip unrar
 
-printf "######   Creating user's folders   ######\n"
-sudo pacman -S --noconfirm xdg-user-dirs
-
 printf "######   Installing yay   ######\n"
 git clone https://aur.archlinux.org/yay.git
 cd yay
@@ -163,6 +160,9 @@ bindkey -s "^[OS" "-"
 bindkey -s "^[OR" "*"
 bindkey -s "^[OQ" "/"
 EOF
+
+printf "######   Creating user's folders   ######\n" 
+sudo pacman -S --noconfirm xdg-user-dirs
 
 # printf "######   Installing pamac   ######\n"
 # yay -S --noconfirm pamac-aur
