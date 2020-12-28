@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# Check if user is root / sudo and if true, exit. "yay" install needs to run as normal user. 
+if [[ $(id -u) = 0 ]]
+  then printf "\nPlease run as non-root / sudo, ie. normal user\n\n"
+  exit 1
+ fi
+
+printf "\n-------------------------------------\n"
 printf "\n>>>   This sets the country to be used by the [reflector] script\n"
 printf ">>>   Reflector is a Python script which can retrieve the most up-to-date package mirrors\n"
 printf ">>>   See: https://github.com/BashTux1/arch-auto-install/blob/master/README.md#reflector-country-list\n"
@@ -7,26 +14,84 @@ printf "\nEnter Reflector Country [Australia]: "
 read reflector_country
 reflector_country=${reflector_country:-Australia}
 
-printf "\n>>>   This password is for the currently logged in non-root user\n"
-printf ">>>   This is required to make Zsh the default shell for the non-root user \n"
-while true; do
-	printf "\nEnter current User Password: "
-    read -s user_password1
-    echo
-	printf "\nConfirm current User Password: "
-    read -s user_password
-    echo
-    [ "$user_password1" = "$user_password" ] && break
-    printf "\nPasswords DO NOT match, Please try again\n"
+### This asks if you want to install UFW and sets the variable accordingly
+printf "\n-------------------------------------\n"
+printf "\n>>>   The following will install [UFW (Uncomplicated Firewall)] and apply some default config\n"
+printf ">>>   Allow SSH (Port 22), Allow HTTP (Port 80) and Allow HTTPS (Port 443)\n"
+while true
+do
+    printf "\n>>>   Would you like to install UFW [Y]: "
+    read ufw
+    ufw=${ufw:-Y}
+
+case $ufw in
+    [yY][eE][sS]|[yY])
+break
+;;
+    [nN][oO]|[nN])
+ break
+    ;;
+    *)
+ echo ">>>   Invalid input... Valid entries are E.g. [Y / N] or [y / n] or [Yes / No]"
+ ;;
+ esac
 done
 
-# Check if user is root / sudo and if true, exit. "yay" install needs to run as normal user. 
-if [[ $(id -u) = 0 ]]
-  then printf "\nPlease run as non-root / sudo, ie. normal user\n\n"
-  exit 1
- fi
+### This asks if you want to install Yay and sets the variable accordingly
+printf "\n-------------------------------------\n"
+printf "\n>>>   The following will install the widely used [yay] AUR Helper \n"
+while true
+do
+    printf "\n>>>   Would you like to install Yay [Y]: "
+    read yay
+    yay=${yay:-Y}
 
-printf "######   Syncing repos and updating packages   ######\n"
+case $yay in
+    [yY][eE][sS]|[yY])
+break
+;;
+    [nN][oO]|[nN])
+ break
+    ;;
+    *)
+ echo ">>>   Invalid input... Valid entries are E.g. [Y / N] or [y / n] or [Yes / No]"
+ ;;
+ esac
+done
+
+### This asks if you want to install ZSH and sets the variable accordingly
+printf "\n-------------------------------------\n"
+printf "\n>>>   The following will install [Zsh] along with [Oh My Zsh] and apply some customisations\n"
+while true
+do
+    printf "\n>>>   Would you like to install Zsh [Y]: "
+    read zsh
+    zsh=${zsh:-Y}
+
+case $zsh in
+    [yY][eE][sS]|[yY])
+break
+;;
+    [nN][oO]|[nN])
+ break
+    ;;
+    *)
+ echo ">>>   Invalid input... Valid entries are E.g. [Y / N] or [y / n] or [Yes / No]"
+ ;;
+ esac
+done
+
+### If answered yes to install Zsh, ask for user passwords, required for the script
+if [[ "$zsh" =~ ^([yY][eE][sS]|[yY])$ ]]
+then
+printf "\n>>>   The password entry is required to make Zsh the default shell for User: $USER \n"
+printf "\nEnter Password for [$USER]: "
+read -s user_password
+fi
+
+printf "\n\n\n######   Syncing repos and updating packages   ######\n"
+### Let user know about SUDO
+printf "\n>>>   Since the script is run as non-root, some tasks are run as SUDO.\n\n"
 sudo pacman -Syu --noconfirm
 
 printf "######   Installing reflector and Applying Custom Mirrors   ######\n"
@@ -48,26 +113,34 @@ EOF
 sudo systemctl enable reflector.service
 sudo systemctl start reflector.service
 
-printf "######   Installing and configuring UFW   ######\n"
-sudo pacman -S --noconfirm ufw
-sudo systemctl enable ufw
-sudo systemctl start ufw
-sudo ufw default deny incoming
-sudo ufw default allow outgoing
-sudo ufw limit ssh
-sudo ufw allow 80
-sudo ufw allow 443
-echo "y" | sudo ufw enable
+### If answered yes, install UFW, else do not install
+if [[ "$ufw" =~ ^([yY][eE][sS]|[yY])$ ]]
+then
+    printf "######   Installing and configuring UFW   ######\n"
+    sudo pacman -S --noconfirm ufw
+    sudo systemctl enable ufw
+    sudo systemctl start ufw
+    sudo ufw default deny incoming
+    sudo ufw default allow outgoing
+    sudo ufw limit ssh
+    sudo ufw allow 80
+    sudo ufw allow 443
+    echo "y" | sudo ufw enable
+fi
 
 printf "######   Installing common applications   ######\n"
 sudo pacman -S --noconfirm htop p7zip ripgrep unzip unrar
 
+### If answered yes, install yay, else do not install
+if [[ "$yay" =~ ^([yY][eE][sS]|[yY])$ ]]
+then
 printf "######   Installing yay   ######\n"
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si --noconfirm
 cd ..
 rm -rf yay-bin
+fi
 
 # printf "######   Installing fonts   ######\n"
 # sudo pacman -S --noconfirm ttf-roboto ttf-roboto-mono ttf-droid ttf-opensans ttf-dejavu ttf-liberation ttf-hack noto-fonts ttf-fira-code ttf-fira-mono ttf-font-awesome noto-fonts-emoji ttf-hanazono
@@ -102,6 +175,9 @@ complete -cf sudo
 
 EOF
 
+### If answered yes, install Zsh, else do not install
+if [[ "$zsh" =~ ^([yY][eE][sS]|[yY])$ ]]
+then
 printf "######   Installing Zsh   ######\n"
 sudo pacman -S --noconfirm zsh zsh-completions
 
@@ -160,6 +236,7 @@ bindkey -s "^[OS" "-"
 bindkey -s "^[OR" "*"
 bindkey -s "^[OQ" "/"
 EOF
+fi
 
 printf "######   Creating user's folders   ######\n" 
 sudo pacman -S --noconfirm xdg-user-dirs

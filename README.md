@@ -43,7 +43,7 @@ Packages installed via **Pacstrap** in this script:
 
 ### Overview of Script Functions
 
-- Read User Input for Variables
+- Read User Input for required information
 - Update system clock
 - Apply country mirrors via reflector
 - Sync package database
@@ -66,14 +66,16 @@ Packages installed via **Pacstrap** in this script:
    - Add user as a sudoer
    - Install GRUB Bootloader
    - Generate Hosts File
+- Get post-install.sh script and place in user folder
 - Unmount Partions
 - Arch Linux is ready
 
 ## Post install script (post-install.sh)
 
-- Read User Input for Variables
+- Read User Input for required information and optional tasks
+- Sync package database
 - reflector - Install and configure mirrors for country set in variable
-- [UFW](https://wiki.archlinux.org/index.php/Uncomplicated_Firewall) (Uncomplicated Firewall)
+- "Optional" [UFW](https://wiki.archlinux.org/index.php/Uncomplicated_Firewall) (Uncomplicated Firewall)
 - Common Apps: git, htop, p7zip, ripgrep, unzip, unrar
 - Create user folders (xdg-user-dirs)
 - Fonts
