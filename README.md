@@ -26,7 +26,7 @@ Packages installed via **Pacstrap** in this script:
 | **Boot Partition** | 300M | Set your desired EFI boot partition size. Must be in the format "300M" or "1G" etc |
 | **SWAP Partition** | 16G | Set your desired SWAP partition size. Must be in the format "300M" or "1G" etc |
 | **root Password** | MyPassword | Set your root password |
-| **User Name** | johndoe | Set your non root username (will be auto added to SUDO) |
+| **User Name** | johndoe | Set your non root username (will be auto added to SUDOers) |
 | **User Password** | MyPassword | Set your user password for the user created above |
 | **Hostname** | arch | Set the system hostname |
 | **Timezone** | Australia/Sydney | Set your country timezone, must have the following format: Zone/SubZone |
