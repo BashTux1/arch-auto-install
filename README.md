@@ -43,6 +43,7 @@ Packages installed via **Pacstrap** in this script:
 
 ### Overview of Script Functions
 
+- Read User Input for Variables
 - Update system clock
 - Apply country mirrors via reflector
 - Sync package database
@@ -70,6 +71,7 @@ Packages installed via **Pacstrap** in this script:
 
 ## Post install script (post-install.sh)
 
+- Read User Input for Variables
 - reflector - Install and configure mirrors for country set in variable
 - [UFW](https://wiki.archlinux.org/index.php/Uncomplicated_Firewall) (Uncomplicated Firewall)
 - Common Apps: git, htop, p7zip, ripgrep, unzip, unrar
