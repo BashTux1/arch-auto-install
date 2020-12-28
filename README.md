@@ -22,15 +22,15 @@ Packages installed via **Pacstrap** in this script:
 
 | Value | Example/Default | Comment |
 |:-|:-|:-|
-| **disk** | sda | Set the disk name to be used (To find your disk, run **`lsblk`**) |
-| **boot** | 300M | Set your desired EFI boot partition size. Must be in the format "300M" or "1G" etc |
-| **swap** | 16G | Set your desired SWAP partition size. Must be in the format "300M" or "1G" etc |
-| **root_password** | MyPassword | Set your root password |
-| **user_name** | johndoe | Set your non root username (will be auto added to SUDO) |
-| **user_password** | MyPassword | Set your user password for the user created above |
-| **hostname** | arch | Set the system hostname |
-| **continent_city** | Australia/Sydney | Set your country timezone, must have the following format: Zone/SubZone |
-| **reflector_country** | Australia | This sets the country to be used by the [reflector](https://wiki.archlinux.org/index.php/Reflector) script. <BR>  Reflector is a Python script which can retrieve the most up-to-date package mirrors <BR> See [Reflector Country List](https://github.com/BashTux1/arch-auto-install/blob/master/README.md#reflector-country-list) for valid entires |
+| **Disk** | sda | Set the disk name to be used (To find your disk, run **`lsblk`**) |
+| **Boot Partition** | 300M | Set your desired EFI boot partition size. Must be in the format "300M" or "1G" etc |
+| **SWAP Partition** | 16G | Set your desired SWAP partition size. Must be in the format "300M" or "1G" etc |
+| **root Password** | MyPassword | Set your root password |
+| **User Name** | johndoe | Set your non root username (will be auto added to SUDO) |
+| **User Password** | MyPassword | Set your user password for the user created above |
+| **Hostname** | arch | Set the system hostname |
+| **Timezone** | Australia/Sydney | Set your country timezone, must have the following format: Zone/SubZone |
+| **Reflector Country** | Australia | This sets the country to be used by the [reflector](https://wiki.archlinux.org/index.php/Reflector) script. <BR>  Reflector is a Python script which can retrieve the most up-to-date package mirrors <BR> See [Reflector Country List](https://github.com/BashTux1/arch-auto-install/blob/master/README.md#reflector-country-list) for valid entires |
 
 ### Partitions
 
@@ -81,8 +81,8 @@ Packages installed via **Pacstrap** in this script:
 ### User Read Input
  Value | Example/Default | Comment |
 |:-|:-|:-|
-| **user_password** | johndoe | The password required here was set for the non-root user during the initial [install.sh] <BR>  This is required to make Zsh the default shell for the non-root user |
-| **reflector_country** | Australia | This sets the country to be used by the [reflector](https://wiki.archlinux.org/index.php/Reflector) script. <BR>  Reflector is a Python script which can retrieve the most up-to-date package mirrors <BR> See [Reflector Country List](https://github.com/BashTux1/arch-auto-install/blob/master/README.md#reflector-country-list) for valid entires |
+| **User Password** | johndoe | The password required here was set for the non-root user during the initial [install.sh] <BR>  This is required to make Zsh the default shell for the non-root user |
+| **Reflector Country** | Australia | This sets the country to be used by the [reflector](https://wiki.archlinux.org/index.php/Reflector) script. <BR>  Reflector is a Python script which can retrieve the most up-to-date package mirrors <BR> See [Reflector Country List](https://github.com/BashTux1/arch-auto-install/blob/master/README.md#reflector-country-list) for valid entires |
 
 <BR>
 <BR>
