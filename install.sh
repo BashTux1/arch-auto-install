@@ -155,14 +155,33 @@ tee -a /mnt/etc/hosts << EOF
 127.0.1.1	$hostname.localdomain	$hostname
 EOF
 
-printf "######   Getting post-install.sh script   ######\n"
-cd /mnt/home/$user_name
-wget -O post-install.sh https://git.io/JLygr
-chmod +x post-install.sh
-cd /
-
 printf "######   Unmount Partions   ######\n"
 umount -R /mnt
 
 printf "######   Arch Linux is ready. You can reboot now!   ######\n\n\n"
 
+### This asks if you want to reboot
+printf "\n-------------------------------------\n"
+while true
+do
+    printf "\n>>>   Would you like to Reboot [Y]: "
+    read reboot
+    reboot=${reboot:-Y}
+
+case $reboot in
+    [yY][eE][sS]|[yY])
+break
+;;
+    [nN][oO]|[nN])
+ break
+    ;;
+    *)
+ echo ">>>   Invalid input... Valid entries are E.g. [Y / N] or [y / n] or [Yes / No]"
+ ;;
+ esac
+done
+
+if [[ "$reboot" =~ ^([yY][eE][sS]|[yY])$ ]]
+then
+reboot
+fi 

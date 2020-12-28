@@ -82,8 +82,7 @@ break
 done
 
 ### If answered yes to install Zsh, ask for user passwords, required for the script
-if [[ "$zsh" =~ ^([yY][eE][sS]|[yY])$ ]]
-then
+
 printf "\n>>>   The password entry is required to make Zsh the default shell for User: $USER \n"
 printf "\nEnter Password for [$USER]: "
 read -s user_password
@@ -254,5 +253,31 @@ sudo pacman -S --noconfirm xdg-user-dirs
 # passwd --lock root
 
 printf "######   All done with Post Installation   ######\n\n"
-printf "######   Log out and in (or reboot), for shell change to Zsh   ######\n\n"
+printf "######   If you installed Zsh, Log out and in (or reboot), for shell change to Zsh   ######\n\n"
+
+### This asks if you want to reboot
+printf "\n-------------------------------------\n"
+while true
+do
+    printf "\n>>>   Would you like to Reboot [Y]: "
+    read reboot
+    reboot=${reboot:-Y}
+
+case $reboot in
+    [yY][eE][sS]|[yY])
+break
+;;
+    [nN][oO]|[nN])
+ break
+    ;;
+    *)
+ echo ">>>   Invalid input... Valid entries are E.g. [Y / N] or [y / n] or [Yes / No]"
+ ;;
+ esac
+done
+
+if [[ "$reboot" =~ ^([yY][eE][sS]|[yY])$ ]]
+then
+sudo reboot
+fi 
 
