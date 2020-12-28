@@ -5,7 +5,7 @@ Attribution: https://github.com/exah-io/minimal-arch-linux
 ## Install script (install.sh)
 
 This script has been modified to meet my needs. It is geared to host an Arch install in VM.  
-See [Requirements](https://github.com/BashTux1/arch-auto-install/blob/master/README.md#requirements) to make some custom choices for your installation.  
+See [Requirements](https://github.com/BashTux1/arch-auto-install/blob/master/README.md#requirements).  
 
 Packages installed via **Pacstrap** in this script:  
 
@@ -16,7 +16,7 @@ Packages installed via **Pacstrap** in this script:
 | [efibootmgr](https://www.archlinux.org/packages/core/x86_64/efibootmgr/) | [os-prober](https://www.archlinux.org/packages/community/x86_64/os-prober/) | [git](https://www.archlinux.org/packages/extra/x86_64/git/) ||||||
 
 ### Requirements
-- **UEFI mode**
+- **UEFI mode** must be used, this script is not written to work with legacy BIOS
 
 ### User Read Input
 
