@@ -1,15 +1,87 @@
 #!/bin/bash
 
 ### User Variables, Edit these for your environment
-disk="sda"
-boot="300M"
-swap="16G"
-root_password="MyPassword"
-user_name="bchuter"
-user_password="MyPassword"
-hostname="arch"
-continent_city="Australia/Sydney"
-reflector_country="Australia"
+### Depricated. Script now reads input (see below) from user. 
+# disk="sda"
+# boot="300M"
+# swap="16G"
+# root_password="MyPassword"
+# user_name="bchuter"
+# user_password="MyPassword"
+# hostname="arch"
+# continent_city="Australia/Sydney"
+# reflector_country="Australia"
+
+### Read input from user for required variables
+
+printf "\n>>>   Listing all Disk Devices\n\n"
+lsblk
+
+printf "\n>>>   This sets the [Disk Device] to use\n"
+printf "\nEnter Disk Device to Use [sda]: "
+read disk
+disk=${disk:-sda}
+
+printf "\n>>>   This sets the desired [EFI boot partition size]\n"
+printf ">>>   Must be in the format [300M] or [1G] etc\n"
+printf "\nEnter Boot Partition Size [300M]: "
+read boot
+boot=${boot:-300M}
+
+printf "\n>>>   This sets the desired [SWAP partition size]\n"
+printf ">>>   Must be in the format [300M] or [1G] etc\n"
+printf "\nEnter Swap Partition Size [16G]: "
+read swap
+swap=${swap:-16G}
+
+printf "\n>>>   This sets the desired [root password] for this new Arch install\n"
+while true; do
+	printf "\nEnter the Root Password: "
+    read -s root_password1
+    echo
+	printf "\nConfirm the Root Password: "
+    read -s root_password
+    echo
+    [ "$root_password1" = "$root_password" ] && break
+    printf "\nPasswords DO NOT match, Please try again\n"
+done
+
+printf "\n>>>   This sets the desired non-root [username] for this new Arch install.\n"
+printf ">>>   Note: The user will automatically be added to SUDOers\n"
+printf "\nEnter the User Name: "
+read user_name
+
+while true; do
+	printf "\nEnter the User Password for [$user_name]: "
+    read -s user_password1
+    echo
+	printf "\nConfirm the User Password for [$user_name]: "
+    read -s user_password
+    echo
+    [ "$user_password1" = "$user_password" ] && break
+    printf "\nPasswords DO NOT match, Please try again\n"
+done
+
+printf "\n>>>   This sets the system hostname\n"
+printf "\nEnter Hostname [arch]: "
+read hostname
+hostname=${hostname:-arch}
+
+printf "\n>>>   This sets the system Timezone\n"
+printf ">>>   Must have the following format: Zone/SubZone\n"
+printf ">>>   See: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones\n"
+printf "\nEnter the system Timezone [Australia/Sydney]: "
+read continent_city
+continent_city=${continent_city:-Australia/Sydney}
+
+printf "\n>>>   This sets the country to be used by the [reflector] script\n"
+printf ">>>   Reflector is a Python script which can retrieve the most up-to-date package mirrors\n"
+printf ">>>   See: https://github.com/BashTux1/arch-auto-install/blob/master/README.md#reflector-country-list\n"
+printf "\nEnter Reflector Country [Australia]: "
+read reflector_country
+reflector_country=${reflector_country:-Australia}
+
+### End of Input Read 
 
 printf "######   Updating system clock   ######\n"
 timedatectl set-ntp true

@@ -5,7 +5,7 @@ Attribution: https://github.com/exah-io/minimal-arch-linux
 ## Install script (install.sh)
 
 This script has been modified to meet my needs. It is geared to host an Arch install in VM.  
-See [Requirements](https://github.com/bchuter/arch-auto-install/blob/master/README.md#requirements) to make some custom choices for your installation.  
+See [Requirements](https://github.com/BashTux1/arch-auto-install/blob/master/README.md#requirements) to make some custom choices for your installation.  
 
 Packages installed via **Pacstrap** in this script:  
 
@@ -17,9 +17,10 @@ Packages installed via **Pacstrap** in this script:
 
 ### Requirements
 - **UEFI mode**
-- **Change the variables at the top of [install.sh](/install.sh)**
 
-| Variable | Example | Comment |
+### User Read Input
+
+| Value | Example | Comment |
 |:-|:-|:-|
 | **disk** | sda | Set the disk name to be used (To find your disk, run **`lsblk`**) |
 | **boot** | 300M | Set your desired EFI boot partition size. Must be in the format "300M" or "1G" etc |
@@ -29,7 +30,7 @@ Packages installed via **Pacstrap** in this script:
 | **user_password** | MyPassword | Set your user password for the user created above |
 | **hostname** | arch | Set the system hostname |
 | **continent_city** | Australia/Sydney | Set your country timezone, must have the following format: Zone/SubZone |
-| **reflector_country** | Australia | Set your country to be used by [reflector](https://wiki.archlinux.org/index.php/Reflector). <BR> See [Reflector Country List](https://github.com/bchuter/arch-auto-install/blob/master/README.md#reflector-country-list) for valid entries. |
+| **reflector_country** | Australia | Set your country to be used by [reflector](https://wiki.archlinux.org/index.php/Reflector). <BR> See [Reflector Country List](https://github.com/BashTux1/arch-auto-install/blob/master/README.md#reflector-country-list) for valid entries. |
 
 ### Partitions
 
@@ -80,7 +81,7 @@ Packages installed via **Pacstrap** in this script:
 ### Requirements
  Variable | Example | Comment |
 |:-|:-|:-|
-| **reflector_country** | Australia | Set your country to be used by [reflector](https://wiki.archlinux.org/index.php/Reflector). <BR> See [Reflector Country List](https://github.com/bchuter/arch-auto-install/blob/master/README.md#reflector-country-list) for valid entries. |
+| **reflector_country** | Australia | Set your country to be used by [reflector](https://wiki.archlinux.org/index.php/Reflector). <BR> See [Reflector Country List](https://github.com/BashTux1/arch-auto-install/blob/master/README.md#reflector-country-list) for valid entries. |
 
 <BR>
 <BR>
@@ -90,14 +91,14 @@ Packages installed via **Pacstrap** in this script:
 1. Download and boot into the latest [Arch Linux iso](https://www.archlinux.org/download/)
 2. Connect to the internet. Assuming the use of DHCP, in which case this should be automatically done. 
 3. Sync repos: `pacman -Sy` and install **wget** `pacman -S wget`
-4. `wget https://raw.githubusercontent.com/bchuter/arch-auto-install/master/install.sh`
-5. Change the variables at the top of the file. See [Requirements](https://github.com/bchuter/arch-auto-install/blob/master/README.md#requirements)
+4. `wget https://raw.githubusercontent.com/BashTux1/arch-auto-install/master/install.sh`
+5. Change the variables at the top of the file. See [Requirements](https://github.com/BashTux1/arch-auto-install/blob/master/README.md#requirements)
 6. Make the script executable: `chmod +x install.sh`
 7. Run the script: `./install.sh`
 8. Shutdown and unmount boot Arch Linux ISO. 
 9. Boot into your new install of Arch Linux
 10. Login as non root user
-11. Clone the Arch Auto Install Scripts: `git clone https://github.com/bchuter/arch-auto-install.git`
+11. Clone the Arch Auto Install Scripts: `git clone https://github.com/BashTux1/arch-auto-install.git`
 12. Change into the dir: `cd arch-auto-install/`
 13. Make the scripts executable: `chmod +x *.sh`
 14. Run post-install script: `./post-install.sh`
