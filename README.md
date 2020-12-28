@@ -72,15 +72,18 @@ Packages installed via **Pacstrap** in this script:
 
 ## Post install script (post-install.sh)
 
+### Overview of Script Functions
+
 - Read User Input for required information and optional tasks
 - Sync package database
 - reflector - Install and configure mirrors for country set in variable
-- "Optional" [UFW](https://wiki.archlinux.org/index.php/Uncomplicated_Firewall) (Uncomplicated Firewall)
-- Common Apps: git, htop, p7zip, ripgrep, unzip, unrar
+- "**Optional**" [UFW](https://wiki.archlinux.org/index.php/Uncomplicated_Firewall) (Uncomplicated Firewall)
+- Install common apps: git, htop, p7zip, ripgrep, unzip, unrar
+- "**Optional**" Install yay (AUR helper)
+- Ricing bash
+- "**Optional**" Install Zsh and Oh My Zsh
 - Create user folders (xdg-user-dirs)
 - Fonts
-- yay (AUR helper)
-
 
 ### User Read Input
  Value | Example/Default | Comment |
@@ -106,20 +109,7 @@ Packages installed via **Pacstrap** in this script:
 11. Change into the dir: `cd arch-auto-install/`
 12. Make the scripts executable: `chmod +x *.sh`
 13. Run post-install script: `./post-install.sh`
-
-
-## Misc Guides
-
-### How to Setup Github with SSH Key
-
-```
-git config --global user.email "Github external email"
-git config --global user.name "Github username"
-ssh-keygen -t rsa -b 4096 -C "Github email"
-eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/id_rsa
-copy SSH key and add to Github (eg. vim ~/.ssh/id_rsa.pub and copy content into github.com)
-```
+14. **Optionally**, chose a Desktop Environment to install by running the required script.
 
 ### Reflector Country List
 
