@@ -158,7 +158,7 @@ EOF
 printf "######   Unmount Partions   ######\n"
 umount -R /mnt
 
-printf "######   Arch Linux is ready. You can reboot now!   ######\n\n\n"
+printf "\n\n######   Arch Linux is ready. You can reboot now!   ######\n"
 
 ### This asks if you want to reboot
 printf "\n-------------------------------------\n"

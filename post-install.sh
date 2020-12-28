@@ -82,7 +82,8 @@ break
 done
 
 ### If answered yes to install Zsh, ask for user passwords, required for the script
-
+if [[ "$zsh" =~ ^([yY][eE][sS]|[yY])$ ]]
+then
 printf "\n>>>   The password entry is required to make Zsh the default shell for User: $USER \n"
 printf "\nEnter Password for [$USER]: "
 read -s user_password
