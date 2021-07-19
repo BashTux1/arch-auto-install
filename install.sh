@@ -128,8 +128,7 @@ echo $hostname > /etc/hostname
 printf "######   Setting root password   ######\n"
 echo -en "$root_password\n$root_password" | passwd
 printf "######   Creating new user   ######\n"
-useradd -m -G wheel $user_name
-usermod -a -G video $user_name
+useradd -m -G wheel,video $user_name
 echo -en "$user_password\n$user_password" | passwd $user_name
 printf "######   Enabling DHCP   ######\n"
 systemctl enable dhcpcd
