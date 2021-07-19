@@ -39,7 +39,7 @@ Packages installed via **Pacstrap** in this script:
 | sda1                                                  | disk  |            |             |
 | ├─sda1                                                | part  |   /boot    |  300M / Set custom via variables      |
 | ├─sda2                                                | part  |    SWAP    |  16G  / Set custom via variables      |
-| ├─sda3                                                | part  |      /     |  Remaining  |
+| └─sda3                                                | part  |      /     |  Remaining  |
 
 ### Overview of Script Functions
 
