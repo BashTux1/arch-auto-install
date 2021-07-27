@@ -101,7 +101,7 @@ Packages installed via **Pacstrap** in this script:
 
 1. Download and boot into the latest [Arch Linux iso](https://www.archlinux.org/download/)
 2. Connect to the internet. Assuming the use of DHCP, in which case this should be automatically done. 
-3. Sync repos: `pacman -Sy` and install **wget** `pacman -S wget`
+3. Sync repos: `pacman -Syy` and install **wget** `pacman -S wget`
 4. `wget -O install.sh https://git.io/JLyzt`
 5. Make the script executable: `chmod +x install.sh`
 6. Run the script: `./install.sh`
