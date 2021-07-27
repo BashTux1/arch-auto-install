@@ -34,7 +34,9 @@ swap=${swap:-16G}
 printf "\n>>>   This sets the desired [root password] for this new Arch install\n\n"
 while true; do
 	read -r -s -p "Enter the Root Password: " root_password1
+	printf "\n"
 	read -r -s -p "Confirm the Root Password: " root_password
+	printf "\n"
 
 	[ "${root_password1}" = "${root_password}" ] && break
 	printf "\nPasswords DO NOT match, Please try again\n"
@@ -46,7 +48,9 @@ read -r -p "Enter the User Name: " user_name
 
 while true; do
 	read -r -s -p "Enter the User Password for [${user_name}]: " user_password1
+	printf "\n"
 	read -r -s -p "Confirm the User Password for [${user_name}]: " user_password
+	printf "\n"
 
 	[ "${user_password1}" = "${user_password}" ] && break
 	printf "\nPasswords DO NOT match, Please try again\n"
