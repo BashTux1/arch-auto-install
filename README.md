@@ -113,6 +113,7 @@ Packages installed via **Pacstrap** in this script:
 12. Make the scripts executable: `chmod +x *.sh`
 13. Run post-install script: `./post-install.sh`
 14. **Optionally**, chose a Desktop Environment to install by running the required script.
+15. **Optionally**, setup a Static IP by running `nmtui` (Network Manager Text User Interface)
 
 ### Reflector Country List
 
