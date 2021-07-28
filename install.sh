@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Read input from user for required variables
-#--------------------------------------------
+# -------------------------------------------
 
 printf "\n>>>   Listing all Disk Devices\n\n"
 lsblk

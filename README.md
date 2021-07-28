@@ -66,7 +66,6 @@ Packages installed via **Pacstrap** in this script:
    - Add user as a sudoer
    - Install GRUB Bootloader
    - Generate Hosts File
-- Get post-install.sh script and place in user folder
 - Unmount Partions
 - Arch Linux is ready
 
