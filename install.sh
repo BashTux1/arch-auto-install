@@ -1,18 +1,7 @@
 #!/usr/bin/env bash
 
-### User Variables, Edit these for your environment
-### Depricated. Script now reads input (see below) from user. 
-# disk="sda"
-# boot="300M"
-# swap="16G"
-# root_password="MyPassword"
-# user_name="bchuter"
-# user_password="MyPassword"
-# hostname="arch"
-# continent_city="Australia/Sydney"
-# reflector_country="Australia"
-
-### Read input from user for required variables
+# Read input from user for required variables
+#--------------------------------------------
 
 printf "\n>>>   Listing all Disk Devices\n\n"
 lsblk
@@ -72,7 +61,11 @@ printf ">>>   See: https://github.com/BashTux1/arch-auto-install/blob/master/REA
 read -r -p "Enter Reflector Country [Australia]: " reflector_country
 reflector_country=${reflector_country:-Australia}
 
-### End of Input Read 
+# End of Input Read
+#--------------------------------------------
+
+# Start executed commands
+#--------------------------------------------
 
 printf "######   Updating system clock   ######\n"
 timedatectl set-ntp true
@@ -150,7 +143,12 @@ umount -R /mnt
 
 printf "\n\n######   Arch Linux is ready. You can reboot now!   ######\n"
 
-### This asks if you want to reboot
+# End of executed commands
+#--------------------------------------------
+
+# Asks to reboot
+#--------------------------------------------
+
 printf "\n-------------------------------------\n"
 while true; do
 	read -r -p ">>>   Would you like to Reboot [Y]: " reboot
