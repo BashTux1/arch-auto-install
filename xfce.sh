@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 printf "######   Installing vmware requirements   ######\n"
 sudo pacman -S --noconfirm xf86-input-vmmouse xf86-video-vmware mesa
