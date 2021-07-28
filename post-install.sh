@@ -94,7 +94,7 @@ printf "######   Installing reflector and Applying Custom Mirrors   ######\n"
 sudo pacman -S --noconfirm reflector 
 
 sudo sed -i 's/^--/# --/g' /etc/xdg/reflector/reflector.conf
-sudo tee -a /etc/xdg/reflector/reflector.conf << 'EOF'
+sudo tee -a /etc/xdg/reflector/reflector.conf <<'EOF'
 
 ##### Config Added via post-install.sh #####
 
@@ -143,7 +143,7 @@ fi
 printf "######   Ricing bash   ######\n"
 mv ~/.bashrc .bashrc_original
 touch ~/.bashrc
-tee -a ~/.bashrc << 'EOF'
+tee -a ~/.bashrc <<'EOF'
 #
 # ~/.bashrc
 #
@@ -200,7 +200,7 @@ printf "######   Changing Zsh default theme   ######\n"
 sudo sed -i 's/^ZSH_THEME="robbyrussell"/ZSH_THEME="lukerandall"/g' ~/.zshrc
 
 printf "######   Adding Zsh key bindings for Keypad   ######\n"
-tee -a ~/.zshrc << 'EOF'
+tee -a ~/.zshrc <<'EOF'
 ## Keypad Bindings
 
 ## The actual codes (for example ^[Oq) may be different on your system. 
@@ -238,7 +238,7 @@ sudo pacman -S --noconfirm xdg-user-dirs
 
 # printf "######   Reducing VM writeback time   ######\n"
 # sudo touch /etc/sysctl.d/dirty.conf
-# sudo tee -a /etc/sysctl.d/dirty.conf << EOF
+# sudo tee -a /etc/sysctl.d/dirty.conf <<'EOF'
 # vm.dirty_writeback_centisecs = 1500
 # EOF
 
