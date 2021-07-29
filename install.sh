@@ -22,13 +22,13 @@ swap=${swap:-16G}
 
 printf "\n>>>   This sets the desired [root password] for this new Arch install\n\n"
 while true; do
-	read -r -s -p "Enter the Root Password: " root_password1
-	printf "\n"
-	read -r -s -p "Confirm the Root Password: " root_password
-	printf "\n"
+  read -r -s -p "Enter the Root Password: " root_password1
+  printf "\n"
+  read -r -s -p "Confirm the Root Password: " root_password
+  printf "\n"
 
-	[ "${root_password1}" = "${root_password}" ] && break
-	printf "\nPasswords DO NOT match, Please try again\n"
+  [ "${root_password1}" = "${root_password}" ] && break
+  printf "\nPasswords DO NOT match, Please try again\n"
 done
 
 printf "\n>>>   This sets the desired non-root [username] for this new Arch install.\n"
@@ -36,13 +36,13 @@ printf ">>>   Note: The user will automatically be added to SUDOers\n\n"
 read -r -p "Enter the User Name: " user_name
 
 while true; do
-	read -r -s -p "Enter the User Password for [${user_name}]: " user_password1
-	printf "\n"
-	read -r -s -p "Confirm the User Password for [${user_name}]: " user_password
-	printf "\n"
+  read -r -s -p "Enter the User Password for [${user_name}]: " user_password1
+  printf "\n"
+  read -r -s -p "Confirm the User Password for [${user_name}]: " user_password
+  printf "\n"
 
-	[ "${user_password1}" = "${user_password}" ] && break
-	printf "\nPasswords DO NOT match, Please try again\n"
+  [ "${user_password1}" = "${user_password}" ] && break
+  printf "\nPasswords DO NOT match, Please try again\n"
 done
 
 printf "\n>>>   This sets the system hostname\n\n"
@@ -151,23 +151,23 @@ printf "\n\n######   Arch Linux is ready. You can reboot now!   ######\n"
 
 printf "\n-------------------------------------\n"
 while true; do
-	read -r -p ">>>   Would you like to Reboot [Y]: " reboot
-	reboot=${reboot:-Y}
+  read -r -p ">>>   Would you like to Reboot [Y]: " reboot
+  reboot=${reboot:-Y}
 
-	case $reboot in
-		[yY][eE][sS]|[yY])
-			break
-		;;
-		[nN][oO]|[nN])
-			break
-		;;
-		*)
-			echo ">>>   Invalid input... Valid entries are E.g. [Y / N] or [y / n] or [Yes / No]"
-		;;
-	esac
+  case $reboot in
+    [yY][eE][sS]|[yY])
+      break
+    ;;
+    [nN][oO]|[nN])
+      break
+    ;;
+    *)
+      echo ">>>   Invalid input... Valid entries are E.g. [Y / N] or [y / n] or [Yes / No]"
+    ;;
+  esac
 done
 
 if [[ "${reboot}" =~ ^([yY][eE][sS]|[yY])$ ]]
 then
-	reboot
+  reboot
 fi
