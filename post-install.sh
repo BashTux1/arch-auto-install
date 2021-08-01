@@ -7,10 +7,10 @@ if [[ $(id -u) = 0 ]]
 fi
 
 ### Password required for SUDO
-printf "\n>>>   The non-root user password is required for SUDO"
+printf "\n>>>   The non-root user password is required for SUDO\n\n"
 read -r -s -p "Please enter the user password for [${USER}]: " user_password
 
-printf "\n-------------------------------------\n"
+printf "\n\n-------------------------------------\n"
 printf "\n>>>   This sets the country to be used by the [reflector] script\n"
 printf ">>>   Reflector is a Python script which can retrieve the most up-to-date package mirrors\n"
 printf ">>>   See: https://github.com/BashTux1/arch-auto-install/blob/master/README.md#reflector-country-list\n"
@@ -196,6 +196,7 @@ then
 
 	printf "######   Adding Zsh key bindings for Keypad   ######\n"
 	tee -a ~/.zshrc <<-'EOF'
+	
 	## Keypad Bindings
 	
 	## The actual codes (for example ^[Oq) may be different on your system. 
