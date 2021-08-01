@@ -268,7 +268,6 @@ while true; do
 		esac
 done
 
-if [[ "$reboot" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+if [[ "${reboot}" =~ ^([yY][eE][sS]|[yY])$ ]]; then
 	sudo reboot
 fi
-
