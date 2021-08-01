@@ -2,7 +2,7 @@
 
 # Check if user is root / sudo and if true, exit. "yay" install needs to run as normal user. 
 if [[ $(id -u) = 0 ]]
-	then printf "\n"${BRed}"Please run as non-root user"${Color_Off}"\n\n"
+	then printf "\nPlease run as non-root user\n\n"
 	exit 1
 fi
 
@@ -23,7 +23,7 @@ while true; do
 	printf "\n"
 
 	[ "${user_password1}" = "${user_password}" ] && break
-	printf "\n"${BRed}"Passwords DO NOT match"${Color_Off}"\nPlease try again...\n\n"
+	printf "\n"${BRed}"Passwords DO NOT match"${Colour_Off}"\nPlease try again...\n\n"
 done
 
 printf "\n\n-------------------------------------\n"
@@ -36,7 +36,7 @@ reflector_country=${reflector_country:-Australia}
 
 ### This asks if you want to install UFW and sets the variable accordingly
 printf "\n-------------------------------------\n"
-printf "\n>>>   "${BYellow}"Optional:"${Color_Off}" [UFW] (Uncomplicated Firewall) with some default config\n"
+printf "\n>>>   "${BYellow}"Optional:"${Colour_Off}" [UFW] (Uncomplicated Firewall) with some default config\n"
 printf ">>>   Allow SSH (Port 22), Allow HTTP (Port 80) and Allow HTTPS (Port 443)\n"
 while true; do
 	printf "\n>>>   Would you like to install UFW [Y]: "
@@ -58,7 +58,7 @@ done
 
 ### This asks if you want to install Yay and sets the variable accordingly
 printf "\n-------------------------------------\n"
-printf "\n>>>   "${BYellow}"Optional:"${Color_Off}" [yay] {Yet another yogurt}, Pacman wrapper and AUR helper \n"
+printf "\n>>>   "${BYellow}"Optional:"${Colour_Off}" [yay] {Yet another yogurt}, Pacman wrapper and AUR helper \n"
 while true; do
 	printf "\n>>>   Would you like to install Yay [Y]: "
 	read -r yay
@@ -79,7 +79,7 @@ done
 
 ### This asks if you want to install ZSH and sets the variable accordingly
 printf "\n-------------------------------------\n"
-printf "\n>>>   "${BYellow}"Optional:"${Color_Off}" [Zsh] with [Oh My Zsh] and apply some customisations\n"
+printf "\n>>>   "${BYellow}"Optional:"${Colour_Off}" [Zsh] with [Oh My Zsh] and apply some customisations\n"
 while true; do
 	printf "\n>>>   Would you like to install Zsh [Y]: "
 	read -r zsh
@@ -245,12 +245,12 @@ fi
 printf "######   Creating user's folders   ######\n" 
 sudo pacman -S --noconfirm xdg-user-dirs
 
-printf "######   "${BGreen}"All done with Post Installation"${Color_Off}"   ######\n\n"
+printf "######   "${BGreen}"All done with Post Installation"${Colour_Off}"   ######\n\n"
 
 ### This asks if you want to reboot
 printf "\n-------------------------------------\n"
 while true; do
-	printf "\n>>>   Would you like to Reboot "${BGreen}"[Y]"${Color_Off}": "
+	printf "\n>>>   Would you like to Reboot "${BGreen}"[Y]"${Colour_Off}": "
 	read -r reboot
 	reboot=${reboot:-Y}
 
