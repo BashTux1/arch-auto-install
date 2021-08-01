@@ -105,13 +105,13 @@ printf "######   Installing reflector and Applying Custom Mirrors   ######\n"
 sudo pacman -S --noconfirm reflector 
 
 sudo sed -i 's/^--/# --/g' /etc/xdg/reflector/reflector.conf
-sudo tee -a /etc/xdg/reflector/reflector.conf << 'EOF'
+sudo tee -a /etc/xdg/reflector/reflector.conf << EOF
 
 ##### Config Added via post-install.sh #####
 
 --save /etc/pacman.d/mirrorlist
 --country $reflector_country
---protocol http,https
+--protocol https
 --latest 10
 --sort rate
 EOF
