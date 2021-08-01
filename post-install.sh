@@ -2,9 +2,13 @@
 
 # Check if user is root / sudo and if true, exit. "yay" install needs to run as normal user. 
 if [[ $(id -u) = 0 ]]
-	then printf "\nPlease run as non-root / sudo, ie. normal user\n\n"
+	then printf "\nPlease run as non-root user\n\n"
 	exit 1
 fi
+
+### Password required for SUDO
+printf "\n>>>   The non-root user password is required for SUDO"
+read -r -s -p "Please enter the user password for [${USER}]: " user_password
 
 printf "\n-------------------------------------\n"
 printf "\n>>>   This sets the country to be used by the [reflector] script\n"
@@ -78,17 +82,8 @@ while true; do
 	esac
 done
 
-### If answered yes to install Zsh, ask for user passwords, required for the script
-if [[ "$zsh" =~ ^([yY][eE][sS]|[yY])$ ]]
-then
-	printf "\n>>>   The password entry is required to make Zsh the default shell for User: %s \n" "${USER}"
-	read -r -s -p "Enter Password for [${USER}]: " user_password
-fi
-
 printf "\n\n\n######   Syncing repos and updating packages   ######\n"
-### Let user know about SUDO
-printf "\n>>>   Since the script is run as non-root, some tasks are run as SUDO.\n\n"
-sudo pacman -Syu --noconfirm
+echo "${user_password}" | sudo -S pacman -Syu --noconfirm
 
 printf "######   Installing reflector and Applying Custom Mirrors   ######\n"
 sudo pacman -S --noconfirm reflector 
@@ -185,65 +180,53 @@ then
 			chsh -s /bin/zsh
 		done
 
-printf "######   Installing Custom Zsh plugins   ######\n"
-## zsh-syntax-highlighting
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-## zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-## zsh-history-substring-search
-git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
+	printf "######   Installing Custom Zsh plugins   ######\n"
+	## zsh-syntax-highlighting
+	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+	## zsh-autosuggestions
+	git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+	## zsh-history-substring-search
+	git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
 
-printf "######   Enabling Custom Zsh plugins   ######\n" 
-sudo sed -i 's/^plugins=(git)/plugins=(git archlinux zsh-syntax-highlighting zsh-autosuggestions zsh-history-substring-search)/g' ~/.zshrc
+	printf "######   Enabling Custom Zsh plugins   ######\n" 
+	sudo sed -i 's/^plugins=(git)/plugins=(git archlinux zsh-syntax-highlighting zsh-autosuggestions zsh-history-substring-search)/g' ~/.zshrc
 
-printf "######   Changing Zsh default theme   ######\n"
-sudo sed -i 's/^ZSH_THEME="robbyrussell"/ZSH_THEME="lukerandall"/g' ~/.zshrc
+	printf "######   Changing Zsh default theme   ######\n"
+	sudo sed -i 's/^ZSH_THEME="robbyrussell"/ZSH_THEME="lukerandall"/g' ~/.zshrc
 
-printf "######   Adding Zsh key bindings for Keypad   ######\n"
-tee -a ~/.zshrc <<'EOF'
-## Keypad Bindings
-
-## The actual codes (for example ^[Oq) may be different on your system. 
-## You can press Ctrl+v followed by the key in question to get the code for your terminal.
-
-# 0 . Enter
-bindkey -s "^[Op" "0"
-bindkey -s "^[On" "."
-bindkey -s "^[OM" "^M"
-# 1 2 3
-bindkey -s "^[Oq" "1"
-bindkey -s "^[Or" "2"
-bindkey -s "^[Os" "3"
-# 4 5 6
-bindkey -s "^[Ot" "4"
-bindkey -s "^[Ou" "5"
-bindkey -s "^[Ov" "6"
-# 7 8 9
-bindkey -s "^[Ow" "7"
-bindkey -s "^[Ox" "8"
-bindkey -s "^[Oy" "9"
-# + -  * /
-bindkey -s "^[Ol" "+"
-bindkey -s "^[OS" "-"
-bindkey -s "^[OR" "*"
-bindkey -s "^[OQ" "/"
-EOF
+	printf "######   Adding Zsh key bindings for Keypad   ######\n"
+	tee -a ~/.zshrc <<-'EOF'
+	## Keypad Bindings
+	
+	## The actual codes (for example ^[Oq) may be different on your system. 
+	## You can press Ctrl+v followed by the key in question to get the code for your terminal.
+	
+	# 0 . Enter
+	bindkey -s "^[Op" "0"
+	bindkey -s "^[On" "."
+	bindkey -s "^[OM" "^M"
+	# 1 2 3
+	bindkey -s "^[Oq" "1"
+	bindkey -s "^[Or" "2"
+	bindkey -s "^[Os" "3"
+	# 4 5 6
+	bindkey -s "^[Ot" "4"
+	bindkey -s "^[Ou" "5"
+	bindkey -s "^[Ov" "6"
+	# 7 8 9
+	bindkey -s "^[Ow" "7"
+	bindkey -s "^[Ox" "8"
+	bindkey -s "^[Oy" "9"
+	# + -  * /
+	bindkey -s "^[Ol" "+"
+	bindkey -s "^[OS" "-"
+	bindkey -s "^[OR" "*"
+	bindkey -s "^[OQ" "/"
+	EOF
 fi
 
 printf "######   Creating user's folders   ######\n" 
 sudo pacman -S --noconfirm xdg-user-dirs
-
-# printf "######   Installing pamac   ######\n"
-# yay -S --noconfirm pamac-aur
-
-# printf "######   Reducing VM writeback time   ######\n"
-# sudo touch /etc/sysctl.d/dirty.conf
-# sudo tee -a /etc/sysctl.d/dirty.conf <<'EOF'
-# vm.dirty_writeback_centisecs = 1500
-# EOF
-
-# printf "######   Disabling root (still allows sudo)   ######\n"
-# passwd --lock root
 
 printf "######   All done with Post Installation   ######\n\n"
 printf "######   If you installed Zsh, Log out and in (or reboot), for shell change to Zsh   ######\n\n"
