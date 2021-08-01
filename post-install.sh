@@ -255,17 +255,17 @@ while true; do
 	read -r -p ">>>   Would you like to Reboot [Y]: " reboot
 	reboot=${reboot:-Y}
 
-		case $reboot in
-			[yY][eE][sS]|[yY])
-				break
-			;;
-			[nN][oO]|[nN])
-				break
-			;;
-			*)
-				echo ">>>   Invalid input... Valid entries are E.g. [Y / N] or [y / n] or [Yes / No]"
-			;;
-		esac
+	case $reboot in
+		[yY][eE][sS]|[yY])
+			break
+		;;
+		[nN][oO]|[nN])
+			break
+		;;
+		*)
+			echo ">>>   Invalid input... Valid entries are E.g. [Y / N] or [y / n] or [Yes / No]"
+		;;
+	esac
 done
 
 if [[ "${reboot}" =~ ^([yY][eE][sS]|[yY])$ ]]; then
