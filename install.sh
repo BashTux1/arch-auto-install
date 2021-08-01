@@ -158,7 +158,7 @@ printf "\n\n######   "${BGreen}"Arch Linux is ready. You can reboot now!"${Colou
 
 printf "\n-------------------------------------\n"
 while true; do
-	read -r -p ">>>   Would you like to Reboot "${BGreen}"[Y]"${Colour_Off}": " reboot
+	read -r -p ">>>   Would you like to Reboot [Y]: " reboot
 	reboot=${reboot:-Y}
 
 		case $reboot in

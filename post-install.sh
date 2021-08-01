@@ -105,7 +105,7 @@ printf "######   Installing reflector and Applying Custom Mirrors   ######\n"
 sudo pacman -S --noconfirm reflector 
 
 sudo sed -i 's/^--/# --/g' /etc/xdg/reflector/reflector.conf
-sudo tee -a /etc/xdg/reflector/reflector.conf <<'EOF'
+sudo tee -a /etc/xdg/reflector/reflector.conf << 'EOF'
 
 ##### Config Added via post-install.sh #####
 
@@ -154,7 +154,7 @@ fi
 printf "######   Ricing bash   ######\n"
 mv ~/.bashrc .bashrc_original
 touch ~/.bashrc
-tee -a ~/.bashrc <<'EOF'
+tee -a ~/.bashrc << 'EOF'
 #
 # ~/.bashrc
 #
@@ -247,24 +247,25 @@ sudo pacman -S --noconfirm xdg-user-dirs
 
 printf "######   "${BGreen}"All done with Post Installation"${Colour_Off}"   ######\n\n"
 
-### This asks if you want to reboot
+# Asks to reboot
+#--------------------------------------------
+
 printf "\n-------------------------------------\n"
 while true; do
-	printf "\n>>>   Would you like to Reboot "${BGreen}"[Y]"${Colour_Off}": "
-	read -r reboot
+	read -r -p ">>>   Would you like to Reboot [Y]: " reboot
 	reboot=${reboot:-Y}
 
-	case $reboot in
-		[yY][eE][sS]|[yY])
-			break
-		;;
-		[nN][oO]|[nN])
-			break
-		;;
-		*)
-			echo ">>>   Invalid input... Valid entries are E.g. [Y / N] or [y / n] or [Yes / No]"
-		;;
-	esac
+		case $reboot in
+			[yY][eE][sS]|[yY])
+				break
+			;;
+			[nN][oO]|[nN])
+				break
+			;;
+			*)
+				echo ">>>   Invalid input... Valid entries are E.g. [Y / N] or [y / n] or [Yes / No]"
+			;;
+		esac
 done
 
 if [[ "$reboot" =~ ^([yY][eE][sS]|[yY])$ ]]; then
