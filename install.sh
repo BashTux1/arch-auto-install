@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+# Bold colour
+BRed='\033[1;31m'         # Red
+BGreen='\033[1;32m'       # Green
+
+# Colour Reset
+Colour_Off='\033[0m'       # Text Reset
+
 # Read input from user for required variables
 # -------------------------------------------
 
@@ -22,13 +29,13 @@ swap=${swap:-16G}
 
 printf "\n>>>   This sets the desired [root password] for this new Arch install\n\n"
 while true; do
-  read -r -s -p "Enter the Root Password: " root_password1
-  printf "\n"
-  read -r -s -p "Confirm the Root Password: " root_password
-  printf "\n"
+	read -r -s -p "Enter the Root Password: " root_password1
+	printf "\n"
+	read -r -s -p "Confirm the Root Password: " root_password
+	printf "\n"
 
-  [ "${root_password1}" = "${root_password}" ] && break
-  printf "\nPasswords DO NOT match, Please try again\n"
+	[ "${root_password1}" = "${root_password}" ] && break
+	printf "\n"${BRed}"Passwords DO NOT match"${Color_Off}"\nPlease try again...\n\n"
 done
 
 printf "\n>>>   This sets the desired non-root [username] for this new Arch install.\n"
@@ -36,13 +43,13 @@ printf ">>>   Note: The user will automatically be added to SUDOers\n\n"
 read -r -p "Enter the User Name: " user_name
 
 while true; do
-  read -r -s -p "Enter the User Password for [${user_name}]: " user_password1
-  printf "\n"
-  read -r -s -p "Confirm the User Password for [${user_name}]: " user_password
-  printf "\n"
+	read -r -s -p "Enter the User Password for [${user_name}]: " user_password1
+	printf "\n"
+	read -r -s -p "Confirm the User Password for [${user_name}]: " user_password
+	printf "\n"
 
-  [ "${user_password1}" = "${user_password}" ] && break
-  printf "\nPasswords DO NOT match, Please try again\n"
+	[ "${user_password1}" = "${user_password}" ] && break
+	printf "\n"${BRed}"Passwords DO NOT match"${Color_Off}"\nPlease try again...\n\n"
 done
 
 printf "\n>>>   This sets the system hostname\n\n"
@@ -99,7 +106,7 @@ printf "######   Generating fstab   ######\n"
 genfstab -U /mnt >> /mnt/etc/fstab
 
 printf "######   Configuring new system   ######\n"
-arch-chroot /mnt /bin/bash <<EOF
+arch-chroot /mnt /bin/bash << EOF
 printf "######   Setting Time Zone   ######\n"
 ln -sf /usr/share/zoneinfo/"${continent_city}" /etc/localtime
 hwclock --systohc --localtime
@@ -132,7 +139,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 EOF
 
 printf "######   Generating Hosts File   ######\n"
-tee -a /mnt/etc/hosts <<EOF
+tee -a /mnt/etc/hosts << EOF
 127.0.0.1	localhost
 ::1		localhost
 127.0.1.1	"${hostname}".localdomain	"${hostname}"
@@ -141,7 +148,7 @@ EOF
 printf "######   Unmount Partions   ######\n"
 umount -R /mnt
 
-printf "\n\n######   Arch Linux is ready. You can reboot now!   ######\n"
+printf "\n\n######   "${BGreen}"Arch Linux is ready. You can reboot now!"${Color_Off}"   ######\n"
 
 # End of executed commands
 #--------------------------------------------
@@ -151,23 +158,22 @@ printf "\n\n######   Arch Linux is ready. You can reboot now!   ######\n"
 
 printf "\n-------------------------------------\n"
 while true; do
-  read -r -p ">>>   Would you like to Reboot [Y]: " reboot
-  reboot=${reboot:-Y}
+	read -r -p ">>>   Would you like to Reboot "${BGreen}"[Y]"${Color_Off}": " reboot
+	reboot=${reboot:-Y}
 
-  case $reboot in
-    [yY][eE][sS]|[yY])
-      break
-    ;;
-    [nN][oO]|[nN])
-      break
-    ;;
-    *)
-      echo ">>>   Invalid input... Valid entries are E.g. [Y / N] or [y / n] or [Yes / No]"
-    ;;
-  esac
+		case $reboot in
+			[yY][eE][sS]|[yY])
+				break
+			;;
+			[nN][oO]|[nN])
+				break
+			;;
+			*)
+				echo ">>>   Invalid input... Valid entries are E.g. [Y / N] or [y / n] or [Yes / No]"
+			;;
+		esac
 done
 
-if [[ "${reboot}" =~ ^([yY][eE][sS]|[yY])$ ]]
-then
-  reboot
+if [[ "${reboot}" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+	reboot
 fi

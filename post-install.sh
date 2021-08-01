@@ -16,7 +16,15 @@ Colour_Off='\033[0m'       # Text Reset
 
 ### Password required for SUDO
 printf "\n>>>   The non-root user password is required for SUDO\n\n"
-read -r -s -p "Please enter the user password for [${USER}]: " user_password
+while true; do
+	read -r -s -p "Please enter the user password for [${USER}]: " user_password1
+	printf "\n"
+	read -r -s -p "Confirm the user password for [${USER}]: " user_password
+	printf "\n"
+
+	[ "${user_password1}" = "${user_password}" ] && break
+	printf "\n"${BRed}"Passwords DO NOT match"${Color_Off}"\nPlease try again...\n\n"
+done
 
 printf "\n\n-------------------------------------\n"
 printf "\n>>>   This sets the country to be used by the [reflector] script\n"
@@ -31,7 +39,7 @@ printf "\n-------------------------------------\n"
 printf "\n>>>   "${BYellow}"Optional:"${Color_Off}" [UFW] (Uncomplicated Firewall) with some default config\n"
 printf ">>>   Allow SSH (Port 22), Allow HTTP (Port 80) and Allow HTTPS (Port 443)\n"
 while true; do
-	printf "\n>>>   Would you like to install UFW "${BGreen}"[Y]:"${Color_Off}": "
+	printf "\n>>>   Would you like to install UFW [Y]: "
 	read -r ufw
 	ufw=${ufw:-Y}
 
@@ -52,7 +60,7 @@ done
 printf "\n-------------------------------------\n"
 printf "\n>>>   "${BYellow}"Optional:"${Color_Off}" [yay] {Yet another yogurt}, Pacman wrapper and AUR helper \n"
 while true; do
-	printf "\n>>>   Would you like to install Yay "${BGreen}"[Y]:"${Color_Off}": "
+	printf "\n>>>   Would you like to install Yay [Y]: "
 	read -r yay
 	yay=${yay:-Y}
 
@@ -73,7 +81,7 @@ done
 printf "\n-------------------------------------\n"
 printf "\n>>>   "${BYellow}"Optional:"${Color_Off}" [Zsh] with [Oh My Zsh] and apply some customisations\n"
 while true; do
-	printf "\n>>>   Would you like to install Zsh "${BGreen}"[Y]:"${Color_Off}" "
+	printf "\n>>>   Would you like to install Zsh [Y]: "
 	read -r zsh
 	zsh=${zsh:-Y}
 
@@ -242,7 +250,7 @@ printf "######   "${BGreen}"All done with Post Installation"${Color_Off}"   ####
 ### This asks if you want to reboot
 printf "\n-------------------------------------\n"
 while true; do
-	printf "\n>>>   Would you like to Reboot "${BGreen}"[Y]:"${Color_Off}" "
+	printf "\n>>>   Would you like to Reboot "${BGreen}"[Y]"${Color_Off}": "
 	read -r reboot
 	reboot=${reboot:-Y}
 
@@ -259,8 +267,7 @@ while true; do
 	esac
 done
 
-if [[ "$reboot" =~ ^([yY][eE][sS]|[yY])$ ]]
-then
-sudo reboot
-fi 
+if [[ "$reboot" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+	sudo reboot
+fi
 
