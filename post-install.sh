@@ -23,7 +23,7 @@ while true; do
 	printf "\n"
 
 	[ "${user_password1}" = "${user_password}" ] && break
-	printf "\n"${BRed}"Passwords DO NOT match"${Colour_Off}"\nPlease try again...\n\n"
+	printf "\n%bPasswords DO NOT match%b\nPlease try again...\n\n" "${BRed}" "${Colour_Off}"
 done
 
 printf "\n\n-------------------------------------\n"
@@ -36,7 +36,7 @@ reflector_country=${reflector_country:-Australia}
 
 ### This asks if you want to install UFW and sets the variable accordingly
 printf "\n-------------------------------------\n"
-printf "\n>>>   "${BYellow}"Optional:"${Colour_Off}" [UFW] (Uncomplicated Firewall) with some default config\n"
+printf "\n>>>   %bOptional:%b [UFW] (Uncomplicated Firewall) with some default config\n" "${BYellow}" "${Colour_Off}"
 printf ">>>   Allow SSH (Port 22), Allow HTTP (Port 80) and Allow HTTPS (Port 443)\n"
 while true; do
 	printf "\n>>>   Would you like to install UFW [Y]: "
@@ -58,7 +58,7 @@ done
 
 ### This asks if you want to install Yay and sets the variable accordingly
 printf "\n-------------------------------------\n"
-printf "\n>>>   "${BYellow}"Optional:"${Colour_Off}" [yay] {Yet another yogurt}, Pacman wrapper and AUR helper \n"
+printf "\n>>>   %bOptional:%b [yay] {Yet another yogurt}, Pacman wrapper and AUR helper \n" "${BYellow}" "${Colour_Off}"
 while true; do
 	printf "\n>>>   Would you like to install Yay [Y]: "
 	read -r yay
@@ -79,7 +79,7 @@ done
 
 ### This asks if you want to install ZSH and sets the variable accordingly
 printf "\n-------------------------------------\n"
-printf "\n>>>   "${BYellow}"Optional:"${Colour_Off}" [Zsh] with [Oh My Zsh] and apply some customisations\n"
+printf "\n>>>   %bOptional:%b [Zsh] with [Oh My Zsh] and apply some customisations\n" "${BYellow}" "${Colour_Off}"
 while true; do
 	printf "\n>>>   Would you like to install Zsh [Y]: "
 	read -r zsh
@@ -245,7 +245,7 @@ fi
 printf "######   Creating user's folders   ######\n" 
 sudo pacman -S --noconfirm xdg-user-dirs
 
-printf "######   "${BGreen}"All done with Post Installation"${Colour_Off}"   ######\n\n"
+printf "######   %bAll done with Post Installation%b   ######\n\n" "${BGreen}" "${Colour_Off}"
 
 # Asks to reboot
 #--------------------------------------------

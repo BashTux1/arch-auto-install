@@ -35,7 +35,7 @@ while true; do
 	printf "\n"
 
 	[ "${root_password1}" = "${root_password}" ] && break
-	printf "\n"${BRed}"Passwords DO NOT match"${Colour_Off}"\nPlease try again...\n\n"
+	printf "\n%bPasswords DO NOT match%b\nPlease try again...\n\n" "${BRed}" "${Colour_Off}"
 done
 
 printf "\n>>>   This sets the desired non-root [username] for this new Arch install.\n"
@@ -49,7 +49,7 @@ while true; do
 	printf "\n"
 
 	[ "${user_password1}" = "${user_password}" ] && break
-	printf "\n"${BRed}"Passwords DO NOT match"${Colour_Off}"\nPlease try again...\n\n"
+	printf "\n%bPasswords DO NOT match%b\nPlease try again...\n\n" "${BRed}" "${Colour_Off}"
 done
 
 printf "\n>>>   This sets the system hostname\n\n"
@@ -148,7 +148,7 @@ EOF
 printf "######   Unmount Partions   ######\n"
 umount -R /mnt
 
-printf "\n\n######   "${BGreen}"Arch Linux is ready. You can reboot now!"${Colour_Off}"   ######\n"
+printf "\n\n######   %bArch Linux is ready. You can reboot now!%b   ######\n" "${BGreen}" "${Colour_Off}"
 
 # End of executed commands
 #--------------------------------------------
