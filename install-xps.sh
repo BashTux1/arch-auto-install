@@ -90,88 +90,88 @@ fi
 # Start executed commands
 #--------------------------------------------
 
-printf "######   Updating system clock   ######\n"
+printf ">>>   Updating system clock\n"
 timedatectl set-ntp true
 
-printf "######   Applying Country Mirrors via reflector   ######\n"
+printf ">>>   Applying Country Mirrors via reflector\n"
 reflector --country "${reflector_country}" --protocol https --latest 10 --sort rate --save /etc/pacman.d/mirrorlist
 
-printf "######   Syncing packages database   ######\n"
+printf ">>>   Syncing packages database\n"
 pacman -Sy --noconfirm
 
-printf "######   Wiping Drive: %s   ######\n" "${disk}"
+printf ">>>   Wiping Drive: %s\n" "${disk}"
 sgdisk --zap-all /dev/"${disk}"
 
-printf "######   Creating partition tables   ######\n"
+printf ">>>   Creating partition tables\n"
 printf "n\n1\n\n+%s\nef00\nw\ny\n" "${boot}" | gdisk /dev/"${disk}"
 printf "n\n2\n\n+%s\n8200\nw\ny\n" "${swap}" | gdisk /dev/"${disk}"
 printf "n\n3\n\n\n8300\nw\ny\n" | gdisk /dev/"${disk}"
 
-printf "######   Formatting / partition and Mounting   ######\n"
+printf ">>>   Formatting / partition and Mounting\n"
 yes | mkfs.ext4 /dev/"${disk}"p3
 mount /dev/"${disk}"p3 /mnt
 
-printf "######   Formatting /boot partition   ######\n"
+printf ">>>   Formatting /boot partition\n"
 yes | mkfs.fat -F32 /dev/"${disk}"p1
 
-printf "######   Enabling swap   ######\n"
+printf ">>>   Enabling swap\n"
 yes | mkswap /dev/"${disk}"p2
 swapon /dev/"${disk}"p2
 
-printf "######   Installing Arch Linux   ######\n"
+printf ">>>   Installing Arch Linux\n"
 yes '' | pacstrap /mnt base base-devel linux linux-firmware "${cpu_microcode}" e2fsprogs dosfstools networkmanager wget man-db man-pages nano vim openssh grub efibootmgr git bluez bluez-utils
 
-printf "######   Generating fstab   ######\n"
+printf ">>>   Generating fstab\n"
 genfstab -U /mnt >> /mnt/etc/fstab
 
-printf "######   Configuring new system   ######\n"
+printf ">>>   Configuring new system\n"
 arch-chroot /mnt /bin/bash << EOF
-printf "######   Setting Time Zone   ######\n"
+printf ">>>   Setting Time Zone\n"
 ln -sf /usr/share/zoneinfo/"${continent_city}" /etc/localtime
 hwclock --systohc --localtime
 
-printf "######   Setting locales   ######\n"
+printf ">>>   Setting locales\n"
 echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 echo "LANG=en_US.UTF-8" >> /etc/locale.conf
 locale-gen
 
-printf "######   Setting hostname   ######\n"
+printf ">>>   Setting hostname\n"
 echo "${hostname}" > /etc/hostname
 
-printf "######   Setting root password   ######\n"
+printf ">>>   Setting root password\n"
 echo -en "${root_password}\n${root_password}" | passwd
 
-printf "######   Creating new user   ######\n"
+printf ">>>   Creating new user\n"
 useradd -m -G wheel,video "${user_name}"
 echo -en "${user_password}\n${user_password}" | passwd "${user_name}"
 
-printf "######   Enabling NetworkManager   ######\n"
+printf ">>>   Enabling NetworkManager\n"
 systemctl enable NetworkManager
 
-printf "######   Enabling OpenSSH   ######\n"
+printf ">>>   Enabling OpenSSH\n"
 systemctl enable sshd
 
-printf "######   Adding user as a sudoer   ######\n"
+printf ">>>   Adding user as a sudoer\n"
 echo '%wheel ALL=(ALL) ALL' | EDITOR='tee -a' visudo
 
-printf "######   Installing GRUB Bootloader   ######\n"
+printf ">>>   Installing GRUB Bootloader\n"
 mkdir /boot/EFI
 mount /dev/"${disk}"p1 /boot/EFI
 grub-install --target=x86_64-efi --efi-directory=/boot/EFI --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
 EOF
 
-printf "######   Generating Hosts File   ######\n"
+printf ">>>   Generating Hosts File\n"
 tee -a /mnt/etc/hosts << EOF
 127.0.0.1	localhost
 ::1		localhost
 127.0.1.1	"${hostname}".localdomain	"${hostname}"
 EOF
 
-printf "######   Unmount Partions   ######\n"
+printf ">>>   Unmount Partions\n"
 umount -R /mnt
 
-printf "\n\n------   %bArch Linux is ready. You can reboot now!%b   ######\n" "${BGreen}" "${Colour_Off}"
+printf "\n\n>>>   %bArch Linux is ready. You can reboot now!%b   <<<\n" "${BGreen}" "${Colour_Off}"
 
 # End of executed commands
 #--------------------------------------------
@@ -179,7 +179,7 @@ printf "\n\n------   %bArch Linux is ready. You can reboot now!%b   ######\n" "$
 # Asks to reboot
 #--------------------------------------------
 
-printf "\n-------------------------------######\n"
+printf "\n_____________________________________\n"
 while true; do
 	read -r -p ">>>   Would you like to Reboot [Y]: " reboot
 	reboot=${reboot:-Y}

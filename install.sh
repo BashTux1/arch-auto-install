@@ -71,6 +71,22 @@ reflector_country=${reflector_country:-Australia}
 # End of Input Read
 #--------------------------------------------
 
+# Set different microcode, according to CPU vendor
+#--------------------------------------------
+
+cpu_vendor=$(cat /proc/cpuinfo | grep vendor | uniq)
+cpu_microcode=""
+if [[ $cpu_vendor =~ "AuthenticAMD" ]]
+then
+	cpu_microcode="amd-ucode"
+elif [[ $cpu_vendor =~ "GenuineIntel" ]]
+then
+	cpu_microcode="intel-ucode"
+fi
+
+# End of microcode variables
+#--------------------------------------------
+
 # Start executed commands
 #--------------------------------------------
 
@@ -100,7 +116,7 @@ yes | mkswap /dev/"${disk}"2
 swapon /dev/"${disk}"2
 
 printf "######   Installing Arch Linux   ######\n"
-yes '' | pacstrap /mnt base base-devel linux linux-firmware e2fsprogs dosfstools networkmanager wget man-db man-pages nano vim dhcpcd open-vm-tools openssh grub efibootmgr os-prober git
+yes '' | pacstrap /mnt base base-devel linux linux-firmware "${cpu_microcode}" e2fsprogs dosfstools networkmanager wget man-db man-pages nano vim dhcpcd open-vm-tools openssh grub efibootmgr os-prober git
 
 printf "######   Generating fstab   ######\n"
 genfstab -U /mnt >> /mnt/etc/fstab
