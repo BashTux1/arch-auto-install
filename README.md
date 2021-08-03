@@ -101,19 +101,19 @@ Packages installed via **Pacstrap** in this script:
 1. Download and boot into the latest [Arch Linux iso](https://www.archlinux.org/download/)
 2. Connect to the internet. Assuming the use of DHCP, in which case this should be automatically done. 
 3. Sync repos: `pacman -Sy` and install **wget** `pacman -S wget`
-4.1. `wget -O install.sh https://git.io/JLyzt` - VM Install
-4.2. `wget -O install.sh https://git.io/JBNxW` - XPS Install
-5. Make the script executable: `chmod +x install.sh`
-6. Run the script: `./install.sh`
-7. Shutdown and unmount boot Arch Linux ISO. 
-8. Boot into your new install of Arch Linux
-9. Login as non root user
-10. Clone the Arch Auto Install Scripts: `git clone https://github.com/BashTux1/arch-auto-install.git`
-11. Change into the dir: `cd arch-auto-install/`
-12. Make the scripts executable: `chmod +x *.sh`
-13. Run post-install script: `./post-install.sh`
-14. **Optionally**, chose a Desktop Environment to install by running the required script.
-15. **Optionally**, setup a Static IP by running `nmtui` (Network Manager Text User Interface)
+4. `wget -O install.sh https://git.io/JLyzt` - VM Install
+5. `wget -O install.sh https://git.io/JBNxW` - XPS Install
+6. Make the script executable: `chmod +x install.sh`
+7. Run the script: `./install.sh`
+8. Shutdown and unmount boot Arch Linux ISO. 
+9. Boot into your new install of Arch Linux
+10. Login as non root user
+11. Clone the Arch Auto Install Scripts: `git clone https://github.com/BashTux1/arch-auto-install.git`
+12. Change into the dir: `cd arch-auto-install/`
+13. Make the scripts executable: `chmod +x *.sh`
+14. Run post-install script: `./post-install.sh`
+15. **Optionally**, chose a Desktop Environment to install by running the required script.
+16. **Optionally**, setup a Static IP by running `nmtui` (Network Manager Text User Interface)
 
 ### Reflector Country List
 
