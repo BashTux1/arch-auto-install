@@ -76,11 +76,9 @@ reflector_country=${reflector_country:-Australia}
 
 cpu_vendor=$(cat /proc/cpuinfo | grep vendor | uniq)
 cpu_microcode=""
-if [[ $cpu_vendor =~ "AuthenticAMD" ]]
-then
+if [[ $cpu_vendor =~ "AuthenticAMD" ]]; then
 	cpu_microcode="amd-ucode"
-elif [[ $cpu_vendor =~ "GenuineIntel" ]]
-then
+elif [[ $cpu_vendor =~ "GenuineIntel" ]]; then
 	cpu_microcode="intel-ucode"
 fi
 

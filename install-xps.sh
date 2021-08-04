@@ -17,6 +17,19 @@ printf "\n>>>   This sets the [Disk Device] to use\n\n"
 read -r -p "Enter Disk Device to Use [nvme0n1]: " disk
 disk=${disk:-nvme0n1}
 
+# Check if the disk selected is NVME or SDx
+nvmepartion=""
+
+if [[ $disk == @(nvme)* ]]; then
+	nvmepartion="p"
+	echo "NVME Disk selected"
+elif [[ $disk == @(sd)* ]]; then
+	echo "SDx Disk selected"
+else
+	printf "\nThe Disk chosen does not match any disk supported by this script\nExiting"
+	exit 1
+fi
+
 printf "\n>>>   This sets the desired [EFI boot partition size]\n"
 printf ">>>   Must be in the format [300M] or [1G] etc\n\n"
 read -r -p "Enter Boot Partition Size [300M]: " boot
@@ -74,7 +87,7 @@ reflector_country=${reflector_country:-Australia}
 # Set different microcode, according to CPU vendor
 #--------------------------------------------
 
-cpu_vendor=$(cat /proc/cpuinfo | grep vendor | uniq)
+cpu_vendor=$(grep vendor /proc/cpuinfo | uniq)
 cpu_microcode=""
 if [[ $cpu_vendor =~ "AuthenticAMD" ]]
 then
@@ -108,15 +121,15 @@ printf "n\n2\n\n+%s\n8200\nw\ny\n" "${swap}" | gdisk /dev/"${disk}"
 printf "n\n3\n\n\n8300\nw\ny\n" | gdisk /dev/"${disk}"
 
 printf ">>>   Formatting / partition and Mounting\n"
-yes | mkfs.ext4 /dev/"${disk}"p3
-mount /dev/"${disk}"p3 /mnt
+yes | mkfs.ext4 /dev/"${disk}${nvmepartion}"3
+mount /dev/"${disk}${nvmepartion}"3 /mnt
 
 printf ">>>   Formatting /boot partition\n"
-yes | mkfs.fat -F32 /dev/"${disk}"p1
+yes | mkfs.fat -F32 /dev/"${disk}${nvmepartion}"1
 
 printf ">>>   Enabling swap\n"
-yes | mkswap /dev/"${disk}"p2
-swapon /dev/"${disk}"p2
+yes | mkswap /dev/"${disk}${nvmepartion}"2
+swapon /dev/"${disk}${nvmepartion}"2
 
 printf ">>>   Installing Arch Linux\n"
 yes '' | pacstrap /mnt base base-devel linux linux-firmware "${cpu_microcode}" e2fsprogs dosfstools networkmanager wget man-db man-pages nano vim openssh grub efibootmgr git bluez bluez-utils
@@ -156,7 +169,7 @@ echo '%wheel ALL=(ALL) ALL' | EDITOR='tee -a' visudo
 
 printf ">>>   Installing GRUB Bootloader\n"
 mkdir /boot/EFI
-mount /dev/"${disk}"p1 /boot/EFI
+mount /dev/"${disk}${nvmepartion}"1 /boot/EFI
 grub-install --target=x86_64-efi --efi-directory=/boot/EFI --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
 EOF
