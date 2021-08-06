@@ -19,15 +19,15 @@ elif [[ $cpu_vendor =~ "GenuineIntel" ]]; then
 fi
 
 base_packages=(
-  base
+	base
 	base-devel
-  linux
-  linux-firmware
+	linux
+	linux-firmware
 	"${cpu_microcode}"
 )
 
 other_packages=(
-  e2fsprogs
+	e2fsprogs
 	dosfstools
 	networkmanager
 	wget
