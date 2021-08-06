@@ -9,10 +9,12 @@ while true; do
 		[yY][eE][sS]|[yY])
 			printf ">>>   Installing VM requirements\n"
 			sudo pacman -S --noconfirm xf86-input-vmmouse xf86-video-vmware mesa
+			break
 		;;
 		[nN][oO]|[nN])
 			printf ">>>   Installing bluetooth, sound and Intel graphics drivers\n"
 			sudo pacman -S --noconfirm bluez bluez-utils alsa-utils mesa
+			break
 		;;
 		*)
 			echo ">>>   Invalid input... Valid entries are E.g. [Y / N] or [y / n] or [Yes / No]"

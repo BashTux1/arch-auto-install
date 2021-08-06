@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-# Check if user is root / sudo and if true, exit. "yay" install needs to run as normal user. 
+#	enable periodic SSD trim (once a week)
+#	sudo systemctl start fstrim.timer
+
+# Check if user is root / sudo and if true, exit. "yay" install needs to run as normal user.
 if [[ $(id -u) = 0 ]]
 	then printf "\nPlease run as non-root user\n\n"
 	exit 1
@@ -102,7 +105,7 @@ printf "\n\n\n######   Syncing repos and updating packages   ######\n"
 echo "${user_password}" | sudo -S pacman -Syu --noconfirm
 
 printf "######   Installing reflector and Applying Custom Mirrors   ######\n"
-sudo pacman -S --noconfirm reflector 
+sudo pacman -S --noconfirm reflector
 
 sudo sed -i 's/^--/# --/g' /etc/xdg/reflector/reflector.conf
 sudo tee -a /etc/xdg/reflector/reflector.conf << EOF
@@ -204,7 +207,7 @@ then
 	## zsh-history-substring-search
 	git clone https://github.com/zsh-users/zsh-history-substring-search ~/.oh-my-zsh/custom/plugins/zsh-history-substring-search
 
-	printf "######   Enabling Custom Zsh plugins   ######\n" 
+	printf "######   Enabling Custom Zsh plugins   ######\n"
 	sudo sed -i 's/^plugins=(git)/plugins=(git archlinux zsh-syntax-highlighting zsh-autosuggestions zsh-history-substring-search)/g' ~/.zshrc
 
 	printf "######   Changing Zsh default theme   ######\n"
@@ -212,12 +215,12 @@ then
 
 	printf "######   Adding Zsh key bindings for Keypad   ######\n"
 	tee -a ~/.zshrc <<-'EOF'
-	
+
 	## Keypad Bindings
-	
-	## The actual codes (for example ^[Oq) may be different on your system. 
+
+	## The actual codes (for example ^[Oq) may be different on your system.
 	## You can press Ctrl+v followed by the key in question to get the code for your terminal.
-	
+
 	# 0 . Enter
 	bindkey -s "^[Op" "0"
 	bindkey -s "^[On" "."
@@ -242,7 +245,7 @@ then
 	EOF
 fi
 
-printf "######   Creating user's folders   ######\n" 
+printf "######   Creating user's folders   ######\n"
 sudo pacman -S --noconfirm xdg-user-dirs
 
 printf "######   %bAll done with Post Installation%b   ######\n\n" "${BGreen}" "${Colour_Off}"
