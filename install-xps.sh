@@ -5,7 +5,7 @@ BRed='\033[1;31m'         # Red
 BGreen='\033[1;32m'       # Green
 
 # Colour Reset
-Colour_Off='\033[0m'       # Text Reset
+Colour_Off='\033[0m'       # Text Reset.
 
 # Read input from user for required variables
 # -------------------------------------------
