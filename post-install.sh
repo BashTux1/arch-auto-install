@@ -119,7 +119,7 @@ sudo tee -a /etc/xdg/reflector/reflector.conf << EOF
 --sort rate
 EOF
 
-sudo systemctl enable reflector.service
+sudo systemctl enable reflector.timer
 sudo systemctl start reflector.service
 
 ### If answered yes, install UFW, else do not install
