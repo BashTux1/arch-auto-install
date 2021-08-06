@@ -2,9 +2,11 @@
 
 Attribution: https://github.com/exah-io/minimal-arch-linux
 
+These scripts has been modified to meet my needs.
+Take care to read through the scripts if you intend to make use of them. 
+
 ## Install script (install.sh)
 
-This script has been modified to meet my needs. It is geared to host an Arch install in VM.  
 See [Requirements](https://github.com/BashTux1/arch-auto-install/blob/master/README.md#requirements).  
 
 Packages installed via **Pacstrap** in this script:  
@@ -99,13 +101,13 @@ Packages installed via **Pacstrap** in this script:
 ## Installation Guide
 
 1. Download and boot into the latest [Arch Linux iso](https://www.archlinux.org/download/)
-2. Connect to the internet. Assuming the use of DHCP, in which case this should be automatically done. 
+2. Connect to the internet. Assuming the use of DHCP, in which case this should be automatically done.
 3. Sync repos: `pacman -Sy` and install **wget** `pacman -S wget`
 4. `wget -O install.sh https://git.io/JLyzt` - VM Install
 5. `wget -O install.sh https://git.io/JBNxW` - XPS Install
 6. Make the script executable: `chmod +x install.sh`
 7. Run the script: `./install.sh`
-8. Shutdown and unmount boot Arch Linux ISO. 
+8. Shutdown and unmount boot Arch Linux ISO.
 9. Boot into your new install of Arch Linux
 10. Login as non root user
 11. Clone the Arch Auto Install Scripts: `git clone https://github.com/BashTux1/arch-auto-install.git`
