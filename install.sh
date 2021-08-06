@@ -114,7 +114,7 @@ yes | mkswap /dev/"${disk}"2
 swapon /dev/"${disk}"2
 
 printf ">>>   Installing Arch Linux\n"
-yes '' | pacstrap /mnt base base-devel linux linux-firmware "${cpu_microcode}" e2fsprogs dosfstools networkmanager wget man-db man-pages nano vim dhcpcd open-vm-tools openssh grub efibootmgr os-prober git
+yes '' | pacstrap /mnt base base-devel linux linux-firmware "${cpu_microcode}" e2fsprogs dosfstools networkmanager wget man-db man-pages nano vim open-vm-tools openssh grub efibootmgr os-prober git
 
 printf ">>>   Generating fstab\n"
 genfstab -U /mnt >> /mnt/etc/fstab
@@ -124,27 +124,34 @@ arch-chroot /mnt /bin/bash << EOF
 printf ">>>   Setting Time Zone\n"
 ln -sf /usr/share/zoneinfo/"${continent_city}" /etc/localtime
 hwclock --systohc --localtime
+
 printf ">>>   Setting locales\n"
 echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 echo "LANG=en_US.UTF-8" >> /etc/locale.conf
 locale-gen
+
 printf ">>>   Setting hostname\n"
 echo "${hostname}" > /etc/hostname
+
 printf ">>>   Setting root password\n"
 echo -en "${root_password}\n${root_password}" | passwd
+
 printf ">>>   Creating new user\n"
 useradd -m -G wheel,video "${user_name}"
 echo -en "${user_password}\n${user_password}" | passwd "${user_name}"
-printf ">>>   Enabling DHCP\n"
-systemctl enable dhcpcd
+
 printf ">>>   Enabling NetworkManager\n"
 systemctl enable NetworkManager
+
 printf ">>>   Enabling Open VM Tools\n"
 systemctl enable vmtoolsd
+
 printf ">>>   Enabling OpenSSH\n"
 systemctl enable sshd
+
 printf ">>>   Adding user as a sudoer\n"
 echo '%wheel ALL=(ALL) ALL' | EDITOR='tee -a' visudo
+
 printf ">>>   Installing GRUB Bootloader\n"
 mkdir /boot/EFI
 mount /dev/"${disk}"1 /boot/EFI

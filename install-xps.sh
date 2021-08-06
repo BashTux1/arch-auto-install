@@ -7,6 +7,43 @@ BGreen='\033[1;32m'       # Green
 # Colour Reset
 Colour_Off='\033[0m'       # Text Reset
 
+# -------------------------------------------
+
+# Set different microcode, according to CPU vendor
+cpu_vendor=$(grep vendor /proc/cpuinfo | uniq)
+cpu_microcode=""
+if [[ $cpu_vendor =~ "AuthenticAMD" ]]; then
+	cpu_microcode="amd-ucode"
+elif [[ $cpu_vendor =~ "GenuineIntel" ]]; then
+	cpu_microcode="intel-ucode"
+fi
+
+base_packages=(
+  base
+	base-devel
+  linux
+  linux-firmware
+	"${cpu_microcode}"
+)
+
+other_packages=(
+  e2fsprogs
+	dosfstools
+	networkmanager
+	wget
+	man-db
+	man-pages
+	nano
+	vim
+	openssh
+	grub
+	efibootmgr
+	git
+	bluez
+	bluez-utils
+	alsa-utils
+)
+
 # Read input from user for required variables
 # -------------------------------------------
 
@@ -81,27 +118,9 @@ printf ">>>   See: https://github.com/BashTux1/arch-auto-install/blob/master/REA
 read -r -p "Enter Reflector Country [Australia]: " reflector_country
 reflector_country=${reflector_country:-Australia}
 
-# End of Input Read
-#--------------------------------------------
-
-# Set different microcode, according to CPU vendor
-#--------------------------------------------
-
-cpu_vendor=$(grep vendor /proc/cpuinfo | uniq)
-cpu_microcode=""
-if [[ $cpu_vendor =~ "AuthenticAMD" ]]
-then
-	cpu_microcode="amd-ucode"
-elif [[ $cpu_vendor =~ "GenuineIntel" ]]
-then
-	cpu_microcode="intel-ucode"
-fi
-
-# End of microcode variables
-#--------------------------------------------
 
 # Start executed commands
-#--------------------------------------------
+# -------------------------------------------
 
 printf ">>>   Updating system clock\n"
 timedatectl set-ntp true
@@ -132,7 +151,7 @@ yes | mkswap /dev/"${disk}${nvmepartion}"2
 swapon /dev/"${disk}${nvmepartion}"2
 
 printf ">>>   Installing Arch Linux\n"
-yes '' | pacstrap /mnt base base-devel linux linux-firmware "${cpu_microcode}" e2fsprogs dosfstools networkmanager wget man-db man-pages nano vim openssh grub efibootmgr git bluez bluez-utils alsa-utils
+yes '' | pacstrap /mnt "${base_packages[@]}" "${other_packages[@]}"
 
 printf ">>>   Generating fstab\n"
 genfstab -U /mnt >> /mnt/etc/fstab
@@ -186,10 +205,8 @@ umount -R /mnt
 
 printf "\n\n>>>   %bArch Linux is ready. You can reboot now!%b   <<<\n" "${BGreen}" "${Colour_Off}"
 
-# End of executed commands
-#--------------------------------------------
 
-# Asks to reboot
+# Ask to reboot
 #--------------------------------------------
 
 printf "\n_____________________________________\n"
