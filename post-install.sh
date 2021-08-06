@@ -37,7 +37,7 @@ reflector_country=${reflector_country:-Australia}
 ### This asks if you want to install UFW and sets the variable accordingly
 printf "\n-------------------------------------\n"
 printf "\n>>>   %bOptional:%b [UFW] (Uncomplicated Firewall) with some default config\n" "${BYellow}" "${Colour_Off}"
-printf ">>>   Allow SSH (Port 22), Allow HTTP (Port 80) and Allow HTTPS (Port 443)\n"
+printf ">>>   Allow SSH (Port 22)\n"
 while true; do
 	printf "\n>>>   Would you like to install UFW [Y]: "
 	read -r ufw
@@ -129,8 +129,8 @@ then
 	sudo ufw default deny incoming
 	sudo ufw default allow outgoing
 	sudo ufw limit ssh
-	sudo ufw allow 80
-	sudo ufw allow 443
+#	sudo ufw allow 80
+#	sudo ufw allow 443
 	echo "y" | sudo ufw enable
 fi
 

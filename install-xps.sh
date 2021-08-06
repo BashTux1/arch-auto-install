@@ -132,7 +132,7 @@ yes | mkswap /dev/"${disk}${nvmepartion}"2
 swapon /dev/"${disk}${nvmepartion}"2
 
 printf ">>>   Installing Arch Linux\n"
-yes '' | pacstrap /mnt base base-devel linux linux-firmware "${cpu_microcode}" e2fsprogs dosfstools networkmanager wget man-db man-pages nano vim openssh grub efibootmgr git bluez bluez-utils
+yes '' | pacstrap /mnt base base-devel linux linux-firmware "${cpu_microcode}" e2fsprogs dosfstools networkmanager wget man-db man-pages nano vim openssh grub efibootmgr git bluez bluez-utils alsa-utils
 
 printf ">>>   Generating fstab\n"
 genfstab -U /mnt >> /mnt/etc/fstab

@@ -1,18 +1,40 @@
 #!/usr/bin/env bash
 
-printf "######   Checking if post-install.sh has been run   ######\n"
+printf ">>>   Checking if post-install.sh has been run\n"
 
+while true; do
+	printf "\n>>>   Is this arch OS installation hosted in VM [N]: "
+	read -r is_vm
+	is_vm=${is_vm:-N}
 
-printf "######   Installing vmware requirements   ######\n"
+	case $is_vm in
+		[yY][eE][sS]|[yY])
+			printf ">>>   Installing VM requirements\n"
+			sudo pacman -S --noconfirm xf86-input-vmmouse xf86-video-vmware mesa
+		;;
+		[nN][oO]|[nN])
+			printf ">>>   Installing bluetooth, sound and Intel graphics drivers\n"
+			sudo pacman -S --noconfirm bluez bluez-utils alsa-utils mesa
+		;;
+		*)
+			echo ">>>   Invalid input... Valid entries are E.g. [Y / N] or [y / n] or [Yes / No]"
+		;;
+	esac
+done
+
+printf ">>>   Installing vmware requirements\n"
 sudo pacman -S --noconfirm xf86-input-vmmouse xf86-video-vmware
 
-printf "######   Installing xorg   ######\n"
+printf ">>>   Installing vmware requirements\n"
+sudo pacman -S --noconfirm bluez bluez-utils alsa-utils mesa
+
+printf ">>>   Installing xorg\n"
 sudo pacman -S --noconfirm xorg xorg-server
 
-printf "######   Installing Gnome and a few extra apps   ######\n"
+printf ">>>   Installing Gnome and a few extra apps\n"
 sudo pacman -S --noconfirm gnome gnome-tweaks gnome-usage gnome-nettool dconf-editor mesa
 
-printf "######   Enabling GDM   ######\n"
+printf ">>>   Enabling GDM\n"
 sudo systemctl enable gdm.service
 
-printf "######   Your setup is ready. You can reboot now!   ######\n"
+printf ">>>   Your setup is ready. You can reboot now!\n"
