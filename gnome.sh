@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-printf ">>>   Checking if post-install.sh has been run\n"
-
 while true; do
 	printf "\n>>>   Is this arch OS installation hosted in VM [N]: "
 	read -r is_vm

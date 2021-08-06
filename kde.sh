@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-printf ">>>   Checking if post-install.sh has been run\n"
-
-
 printf ">>>   Installing vmware requirements\n"
 sudo pacman -S --noconfirm xf86-input-vmmouse xf86-video-vmware mesa
 
