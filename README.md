@@ -2,7 +2,7 @@
 
 Attribution: https://github.com/exah-io/minimal-arch-linux
 
-> ⚠ These scripts has been modified to meet my needs.
+> ⚠ These scripts has been modified to meet my needs. <BR>
 > ⚠ Take care to read through the scripts if you intend to make use of them.
 
 ## Install script (install.sh)
