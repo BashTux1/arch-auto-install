@@ -193,6 +193,7 @@ printf "\n\n>>>   %bArch Linux is ready. You can reboot now!%b   <<<\n" "${BGree
 #--------------------------------------------
 
 printf "\n_____________________________________\n"
+
 while true; do
 	read -r -p ">>>   Would you like to Reboot [Y]: " reboot
 	reboot=${reboot:-Y}
