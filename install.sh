@@ -114,7 +114,7 @@ yes | mkswap /dev/"${disk}"2
 swapon /dev/"${disk}"2
 
 printf ">>>   Installing Arch Linux\n"
-yes '' | pacstrap /mnt base base-devel linux linux-firmware "${cpu_microcode}" e2fsprogs dosfstools networkmanager wget man-db man-pages nano vim open-vm-tools openssh grub efibootmgr os-prober git
+yes '' | pacstrap /mnt base base-devel linux linux-firmware "${cpu_microcode}" e2fsprogs dosfstools networkmanager wget man-db man-pages nano vim open-vm-tools openssh grub efibootmgr os-prober git htop p7zip ripgrep unzip unrar
 
 printf ">>>   Generating fstab\n"
 genfstab -U /mnt >> /mnt/etc/fstab

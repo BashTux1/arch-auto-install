@@ -137,9 +137,6 @@ then
 	echo "y" | sudo ufw enable
 fi
 
-printf "######   Installing common applications   ######\n"
-sudo pacman -S --noconfirm htop p7zip ripgrep unzip unrar
-
 ### If answered yes, install yay, else do not install
 if [[ "$yay" =~ ^([yY][eE][sS]|[yY])$ ]]
 then

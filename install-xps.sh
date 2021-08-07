@@ -42,6 +42,11 @@ other_packages=(
 	bluez
 	bluez-utils
 	alsa-utils
+	htop
+	p7zip
+	ripgrep
+	unzip
+	unrar
 )
 
 # Read input from user for required variables
