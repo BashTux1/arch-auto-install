@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# test
+
 while true; do
 	printf "\n>>>   Is this arch OS installation hosted in VM [N]: "
 	read -r is_vm
