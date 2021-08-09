@@ -89,7 +89,7 @@ while true; do
 	read -r -s -p "Confirm the Root Password: " root_password
 	printf "\n"
 
-	[ "${root_password1}" = "${root_password}" ] && break
+	[[ "${root_password1}" = "${root_password}" ]] && break
 	printf "\n%bPasswords DO NOT match%b\nPlease try again...\n\n" "${BRed}" "${Colour_Off}"
 done
 
@@ -103,7 +103,7 @@ while true; do
 	read -r -s -p "Confirm the User Password for [${user_name}]: " user_password
 	printf "\n"
 
-	[ "${user_password1}" = "${user_password}" ] && break
+	[[ "${user_password1}" = "${user_password}" ]] && break
 	printf "\n%bPasswords DO NOT match%b\nPlease try again...\n\n" "${BRed}" "${Colour_Off}"
 done
 
