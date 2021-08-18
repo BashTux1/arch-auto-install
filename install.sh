@@ -92,7 +92,7 @@ printf ">>>   Updating system clock\n"
 timedatectl set-ntp true
 
 printf ">>>   Applying Country Mirrors via reflector\n"
-reflector --country "${reflector_country}" --protocol http --protocol https --latest 10 --sort rate --save /etc/pacman.d/mirrorlist
+reflector --country "${reflector_country}" --protocol https --latest 10 --sort rate --save /etc/pacman.d/mirrorlist
 
 printf ">>>   Syncing packages database\n"
 pacman -Sy --noconfirm
