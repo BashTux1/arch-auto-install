@@ -7,6 +7,47 @@ BGreen='\033[1;32m'       # Green
 # Colour Reset
 Colour_Off='\033[0m'       # Text Reset
 
+# Check what mode the system is booted in
+# -------------------------------------------
+
+check_boot() {
+	if [[ -d "/sys/firmware/efi/efivars" ]]
+	then
+		printf "\n>>>   The system is booted in %bUEFI%b mode\n\n" "${BGreen}" "${Colour_Off}"
+		continue_question
+	else
+		printf "\n>>>   The system is booted in %bBIOS (or CSM)%b mode\n\n" "${BRed}" "${Colour_Off}"
+		continue_question
+	fi
+}
+
+continue_question() {
+	local continue
+	while true; do
+		read -r -p ">>>   Would you like to continue [Y]: " continue
+		continue=${continue:-Y}
+
+		case $continue in
+			[yY][eE][sS]|[yY])
+				break
+			;;
+			[nN][oO]|[nN])
+				break
+			;;
+			*)
+				printf ">>>   Invalid input... Valid entries are E.g. [Y / N] or [y / n] or [Yes / No]\n\n"
+			;;
+		esac
+	done
+
+	if [[ "${continue}" =~ ^([nN][oO]|[nN])$ ]]; then
+		printf "\n>>>   You chose NOT to continue, Exiting...\n"
+		exit 1
+	fi
+}
+
+check_boot
+
 # Read input from user for required variables
 # -------------------------------------------
 
