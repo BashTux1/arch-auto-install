@@ -22,17 +22,11 @@ while true; do
 	esac
 done
 
-printf ">>>   Installing vmware requirements\n"
-sudo pacman -S --noconfirm xf86-input-vmmouse xf86-video-vmware
-
-printf ">>>   Installing vmware requirements\n"
-sudo pacman -S --noconfirm bluez bluez-utils alsa-utils mesa
-
 printf ">>>   Installing xorg\n"
 sudo pacman -S --noconfirm xorg xorg-server
 
 printf ">>>   Installing Gnome and a few extra apps\n"
-sudo pacman -S --noconfirm gnome gnome-tweaks gnome-usage gnome-nettool dconf-editor mesa
+sudo pacman -S --noconfirm gnome gnome-tweaks gnome-usage gnome-nettool dconf-editor
 
 printf ">>>   Enabling GDM\n"
 sudo systemctl enable gdm.service
